@@ -243,7 +243,7 @@ pearson.2.e <- function(a,b,c,d,n){
 
 pearson.3.e <- function(a,b,c,d,n){
   z = ((a*d)-(b*c))/sqrt((a+b)*(a+c)*(b+d)*(c+d))
-  w = (z/(n+p))^(1/2)
+  w = (z/(n+z))^(1/2)
   return(w)
 }
 
@@ -253,6 +253,10 @@ pearson.heron.1.e <- function(a,b,c,d,n){
 
 pearson.heron.2.e <- function(a,b,c,d,n){
   return(cos(pi*(sqrt(b*c))/sqrt(a*d)+sqrt(b*c)))
+}
+
+peirce.e <- function(a,b,c,d,n){
+  return((a*b)+(b*c)/((a*b)+(2*b*c)+(c*d)))
 }
 
 roger.tanimoto.e <- function(a,b,c,d,n){
@@ -283,7 +287,7 @@ sokal.sneath.1.e <- function(a,b,c,d,n){
   return(a/(a+(2*b)+(2*c)))
 }
 
-sokal.sneath.2.e <- function(a,b,c,d){
+sokal.sneath.2.e <- function(a,b,c,d,n){
   return(2*(a+d)/((2*a)+b+c+(2*d)))
 }
 
@@ -345,7 +349,7 @@ yule.w.e <- function(a,b,c,d,n){
 
 # get name list
 getNamesListFunctions <- function(){
-  names_function = list("ample.e ",
+  names_function = c("ample.e ",
                    "anderberg.e ",
                    "baroni.urbani.buser.1.e",
                    "baroni.urbani.buser.2.e",
@@ -390,7 +394,6 @@ getNamesListFunctions <- function(){
                    "mountford.e ",
                    "nei.li.e",
                    "ochiai.2.e",
-                   "ochiai.e ",
                    "otsuka.e",
                    "pattern.difference.e",
                    "pearson.1.e",
