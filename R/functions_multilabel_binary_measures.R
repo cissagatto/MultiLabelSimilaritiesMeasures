@@ -30,7 +30,7 @@ if (sistema[1] == "Linux"){
   setwd(FolderRoot)
 }
 setwd(FolderRoot)
-FolderScripts = paste(FolderRoot, "/scripts", sep="")
+FolderScripts = paste(FolderRoot, "/R", sep="")
 
 ##################################################################################################
 
