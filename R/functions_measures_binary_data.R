@@ -32,47 +32,177 @@ if (sistema[1] == "Linux"){
 setwd(FolderRoot)
 FolderScripts = paste(FolderRoot, "/R", sep="")
 
-##################################################################################################
-ample.e <- function(a,b,c,d,n){
+###############################################################################
+# Ample ----------------------------------------------------------------
+#' Similaritie Measure for categorial data
+#'
+#' @family Multi_Label_Binary_Measures
+#' @param a
+#' @param b
+#' @param c
+#' @param d
+ample.e.1 <- function(l){
+  return(abs((l$a*(l$c+l$d))/(l$c*(l$a+l$b))))
+} 
+
+ample.e.2 <- function(a,b,c,d,n){
   return(abs((a*(c+d))/(c*(a+b))))
+} 
+
+###############################################################################
+# Anderberg ----------------------------------------------------------------
+#' Similaritie Measure for categorial data
+#'
+#' @family Multi_Label_Binary_Measures
+#' @param a
+#' @param b
+#' @param c
+#' @param d
+#' @param n
+anderberg.e.1 <- function(l){
+  w = max(l$a,l$b) + max(l$c,l$d) + max(l$a,l$c) + max(l$b,l$d) 
+  z = max((l$a+l$c),(l$b+l$d)) + max((l$a+l$b),(l$c+l$d))
+  x = ((w-z)/(2*l$n))
+  return(x)
 }
 
-anderberg.e <- function(a,b,c,d,n){
-  z = max(a,b)+max(c,d)+max(a,c)+max(b,c)
-  w = max((a+c),(b+d))+max((a+b),(c+d))
-  p = (z-w)/(2*n)
-  return(p)
+anderberg.e.2 <- function(a,b,c,d,n){
+  w = max(a,b) + max(c,d) + max(a,c) + max(b,d) 
+  z = max( (a+c), (b+d) ) + max( (a+b) , (c+d) )
+  x = ((w-z)/(2*n))
+  return(x)
 }
 
-baroni.urbani.buser.1.e <- function(a,b,c,d,n){
+###############################################################################
+# Baroni Urbani Buser 1 ----------------------------------------------------------------
+#' Similaritie Measure for categorial data
+#'
+#' @family Multi_Label_Binary_Measures
+#' @param a
+#' @param b
+#' @param c
+#' @param d
+baroni.urbani.buser.1.e.1 <- function(l){
+  return((sqrt((l$a*l$d)) + l$a)/((sqrt((l$a*l$d))) + l$a + l$b + l$c))
+}
+
+baroni.urbani.buser.1.e.2 <- function(a,b,c,d,n){
   return((sqrt((a*d)) + a)/((sqrt((a*d))) + a + b + c))
 }
 
-baroni.urbani.buser.2.e <- function(a,b,c,d,n){
+###############################################################################
+# Baroni Urbani Buser 2 ----------------------------------------------------------------
+#' Similaritie Measure for categorial data
+#'
+#' @family Multi_Label_Binary_Measures
+#' @param a
+#' @param b
+#' @param c
+#' @param d
+baroni.urbani.buser.2.e.1 <- function(l){
+  return((sqrt((l$a*l$d))+l$a-(l$b+l$c))/((sqrt((l$a*l$d))) + l$a + l$b + l$c))
+}
+
+baroni.urbani.buser.2.e.2 <- function(a,b,c,d,n){
   return((sqrt((a*d))+a-(b+c))/((sqrt((a*d))) + a + b + c))
 }
 
-braun.banquet.e <- function(a,b,c,d,n){
+###############################################################################
+# Braun Banquet ----------------------------------------------------------------
+#' Similaritie Measure for categorial data
+#'
+#' @family Multi_Label_Binary_Measures
+#' @param a
+#' @param b
+#' @param c
+braun.banquet.e.1 <- function(l){
+  return(l$a/max((l$a+l$b),(l$a+l$c)))
+}
+
+braun.banquet.e.2 <- function(a,b,c,d,n){
   return(a/max((a+b),(a+c)))
 }
 
-bray.curtis.e <- function(a,b,c,d,n){
+###############################################################################
+# Bray Curtis ----------------------------------------------------------------
+#' Similaritie Measure for categorial data
+#'
+#' @family Multi_Label_Binary_Measures
+#' @param a
+#' @param b
+#' @param c
+bray.curtis.e.1 <- function(l){
+  return((l$b+l$c)/((2*l$a)+l$b+l$c))
+}
+
+bray.curtis.e.2 <- function(a,b,c,d,n){
   return((b+c)/((2*a)+b+c))
 }
 
-canberra.e <- function(a,b,c,d,n){
+###############################################################################
+# Canberra ----------------------------------------------------------------
+#' Similaritie Measure for categorial data
+#'
+#' @family Multi_Label_Binary_Measures
+#' @param b
+#' @param c
+canberra.e.1 <- function(l){
+  return((l$b+l$c)^(2/2))
+}
+
+canberra.e.2 <- function(a,b,c,d,n){
   return((b+c)^(2/2))
 }
 
-chord.e <- function(a,b,c,d,n){
+##############################################################################
+# Chord ----------------------------------------------------------------
+#' Similaritie Measure for categorial data
+#'
+#' @family Multi_Label_Binary_Measures
+#' @param a
+#' @param b
+#' @param c
+chord.e.1 <- function(l){
+  return(sqrt(2*(1-((l$a)/(sqrt((l$a+l$b)*(l$a+l$c)))))))
+}
+
+chord.e.2 <- function(a,b,c,d,n){
   return(sqrt(2*(1-((a)/(sqrt((a+b)*(a+c)))))))
 }
 
-cityblock.e <- function(a,b,c,d,n){
+##############################################################################
+# Cityblock ----------------------------------------------------------------
+#' Similaritie Measure for categorial data
+#'
+#' @family Multi_Label_Binary_Measures
+#' @param b
+#' @param c
+cityblock.e.1 <- function(l){
+  return(l$b+l$c)
+}
+
+cityblock.e.2 <- function(a,b,c,d,n){
   return(b+c)
 }
 
-cole.e <- function(a,b,c,d,n){
+##############################################################################
+# Cole ----------------------------------------------------------------
+#' Similaritie Measure for categorial data
+#'
+#' @family Multi_Label_Binary_Measures
+#' @param a
+#' @param b
+#' @param c
+#' @param d
+cole.e.1 <- function(l){
+  d1 = sqrt(2) * ((l$a*l$d)-(l$b*l$c))
+  d2 = (((l$a*l$d)-(l$b*l$c))^2) - ((l$a+l$b)*(l$a+l$c)*(l$b+l$d)*(l$c+l$d))
+  d3 = sqrt(d2)
+  d4 = d1/d3
+  return(d4)
+}
+
+cole.e.2 <- function(a,b,c,d,n){
   d1 = sqrt(2) * ((a*d)-(b*c))
   d2 = (((a*d)-(b*c))^2) - ((a+b)*(a+c)*(b+d)*(c+d))
   d3 = sqrt(d2)
@@ -80,276 +210,729 @@ cole.e <- function(a,b,c,d,n){
   return(d4)
 }
 
-cosine.e <- function(a,b,c,d,n){
+##############################################################################
+# Cosine ----------------------------------------------------------------
+#' Similaritie Measure for categorial data
+#'
+#' @family Multi_Label_Binary_Measures
+#' @param a
+#' @param b
+#' @param c
+cosine.e.1 <- function(l){
+  return(l$a / sqrt((((l$a+l$b) * (l$a+l$c))))^2)
+}
+
+cosine.e.2 <- function(a,b,c,d,n){
   return(a / sqrt((((a+b) * (a+c))))^2)
 }
 
-czekanowski.e <- function(a,b,c,d,n){
+##############################################################################
+# Czekanowski ----------------------------------------------------------------
+#' Similaritie Measure for categorial data
+#'
+#' @family Multi_Label_Binary_Measures
+#' @param a
+#' @param b
+#' @param c
+czekanowski.e.1 <- function(l){
+  return((2*l$a)/((2*l$a)+l$b+l$c))
+}
+
+czekanowski.e.2 <- function(a,b,c,d,n){
   return((2*a)/((2*a)+b+c))
 }
 
-dennis.e <- function(a,b,c,d,n){
+##############################################################################
+# Dennis ----------------------------------------------------------------
+#' Similaritie Measure for categorial data
+#'
+#' @family Multi_Label_Binary_Measures
+#' @param a
+#' @param b
+#' @param c
+#' @param d
+#' @param n
+dennis.e.1 <- function(l){
+  return(((l$a*l$d)-(l$b*l$c))/sqrt(l$n*(l$a+l$b)*(l$a+l$c)))
+}
+
+dennis.e.2 <- function(a,b,c,d,n){
   return(((a*d)-(b*c))/sqrt(n*(a+b)*(a+c)))
 }
 
-dice.e <- function(a,b,c,d,n){
+##############################################################################
+# Dice ----------------------------------------------------------------
+#' Similaritie Measure for categorial data
+#'
+#' @family Multi_Label_Binary_Measures
+#' @param a
+#' @param b
+#' @param c
+dice.e.1 <- function(l){
+  return((2*l$a)/((2*l$a)+l$b+l$c))
+}
+
+dice.e.2 <- function(a,b,c,d,n){
   return((2*a)/((2*a)+b+c))
 }
 
-disperson.e <- function(a,b,c,d,n){
+##############################################################################
+# Dispersion ----------------------------------------------------------------
+#' Similaritie Measure for categorial data
+#'
+#' @family Multi_Label_Binary_Measures
+#' @param a
+#' @param b
+#' @param c
+#' @param d
+disperson.e.1 <- function(l){
+  return(((l$a+l$d)-(l$b+l$c))/((l$a+l$b+l$c+l$d)^2))
+}
+
+disperson.e.2 <- function(a,b,c,d,n){
   return(((a+d)-(b+c))/((a+b+c+d)^2))
 }
 
-driver.kroeber.e <- function(a,b,c,d,n){
+##############################################################################
+#  Driver Kroeber ----------------------------------------------------------------
+#' Similaritie Measure for categorial data
+#'
+#' @family Multi_Label_Binary_Measures
+#' @param a
+#' @param b
+#' @param c
+#' @param d
+driver.kroeber.e.1 <- function(l){
+  return((l$a/2) * ((1/(l$a+l$b)) + (1/(l$a+l$c))))
+}
+
+driver.kroeber.e.2 <- function(a,b,c,d,n){
   return((a/2) * ((1/(a+b)) + (1/(a+c))))
 }
 
-euclidean.e <- function(a,b,c,d,n){
+##############################################################################
+# Euclidean ----------------------------------------------------------------
+#' Similaritie Measure for categorial data
+#'
+#' @family Multi_Label_Binary_Measures
+#' @param b
+#' @param c
+euclidean.e.1 <- function(l){
+  return(sqrt(l$b+l$c))
+}
+
+euclidean.e.2 <- function(a,b,c,d,n){
   return(sqrt(b+c))
 }
 
-eyraud.e <- function(a,b,c,d,n){
+##############################################################################
+# Eyraud ----------------------------------------------------------------
+#' Similaritie Measure for categorial data
+#'
+#' @family Multi_Label_Binary_Measures
+#' @param a
+#' @param b
+#' @param c
+#' @param d
+#' @param n
+eyraud.e.1 <- function(l){
+  return((l$n^2)*((l$n*l$a)-(l$a+l$b)*(l$a+l$c))/(l$a+l$b)*(l$a+l$c)*(l$b+l$d)*(l$c+l$d))
+}
+
+eyraud.e.2 <- function(a,b,c,d,n){
   return((n^2)*((n*a)-(a+b)*(a+c))/(a+b)*(a+c)*(b+d)*(c+d))
 }
 
-fager.mcgowan.e <- function(a,b,c,d,n){
+##############################################################################
+# Fager Mcgowan ----------------------------------------------------------------
+#' Similaritie Measure for categorial data
+#'
+#' @family Multi_Label_Binary_Measures
+#' @param a
+#' @param b
+#' @param c
+fager.mcgowan.e.1 <- function(l){
+  return((l$a/sqrt((l$a+l$b)+(l$a+l$c))) - (max((l$a+l$b),(l$a+l$c))/2))
+}
+
+fager.mcgowan.e.2 <- function(a,b,c,d,n){
   return((a/sqrt((a+b)+(a+c))) - (max((a+b),(a+c))/2))
 }
 
-faith.e <- function(a,b,c,d,n){
+##############################################################################
+# Faith ----------------------------------------------------------------
+#' Similaritie Measure for categorial data
+#'
+#' @family Multi_Label_Binary_Measures
+#' @param a
+#' @param b
+#' @param c
+#' @param d
+faith.e.1 <- function(l){
+  return((l$a+(0.5*l$d))/(l$a+l$b+l$c+l$d))
+}
+
+faith.e.2 <- function(a,b,c,d,n){
   return((a+(0.5*d))/(a+b+c+d))
 }
 
-forbes.2.e <- function(a,b,c,d,n){
+##############################################################################
+# Forbes ----------------------------------------------------------------
+#' Similaritie Measure for categorial data
+#'
+#' @family Multi_Label_Binary_Measures
+#' @param a
+#' @param b
+#' @param c
+#' @param n
+forbes.2.e.1 <- function(l){
+  return((l$n*l$a)-((l$a+l$b)*(l$a+l$c))/l$n*(min((l$a+l$b),(l$a+l$c))-((l$a+l$b)*(l$a+l$c))))
+}
+
+forbes.2.e.2 <- function(a,b,c,d,n){
   return((n*a)-((a+b)*(a+c))/n*(min((a+b),(a+c))-((a+b)*(a+c))))
 }
 
-forbesi.e <- function(a,b,c,d,n){
+##############################################################################
+# Forbesi ----------------------------------------------------------------
+#' Similaritie Measure for categorial data
+#'
+#' @family Multi_Label_Binary_Measures
+#' @param a
+#' @param b
+#' @param c
+forbesi.e.1 <- function(l){
+  return((l$n*l$a)/((l$a+l$b)*(l$a+l$c)))
+}
+
+forbesi.e.2 <- function(a,b,c,d,n){
   return((n*a)/((a+b)*(a+c)))
 }
 
-fossum.e <- function(a,b,c,d,n){
+###############################################################################
+# Fossum
+fossum.e.1 <- function(l){
+  return((l$n*(l$a-0.5)^2)/(l$a+l$b)*(l$a+l$c))
+}
+
+fossum.e.2 <- function(a,b,c,d,n){
   return((n*(a-0.5)^2)/(a+b)*(a+c))
 }
 
-gilbert.well.e <- function(a,b,c,d,n){
+###############################################################################
+# Gilbert Well
+gilbert.well.e.1 <- function(l){
+  return(log(l$a)-log(l$n)-log((l$a+l$b)/l$n)-log((l$a+l$c)/l$n))
+}
+
+gilbert.well.e.2 <- function(a,b,c,d,n){
   return(log(a) - log(n) - log((a+b)/n) - log((a+c)/n))
 }
 
-goodman.kruskal.e <- function(a,b,c,d,n){
+###############################################################################
+# Goodman Kruskal
+goodman.kruskal.e.1 <- function(l){
+  z = max(l$a,l$b)+max(l$c,l$d)+max(l$a,l$c)+max(l$b,l$c)
+  w = max((l$a+l$c),(l$b+l$d))+max((l$a+l$b),(l$c+l$d))
+  p = (z-w)/((2*l$n)-w)
+  return(p)
+}
+
+goodman.kruskal.e.2 <- function(a,b,c,d,n){
   z = max(a,b)+max(c,d)+max(a,c)+max(b,c)
   w = max((a+c),(b+d))+max((a+b),(c+d))
   p = (z-w)/((2*n)-w)
   return(p)
 }
 
-gower.e <- function(a,b,c,d,n){
+###############################################################################
+# Gower
+gower.e.1 <- function(l){
+  return((l$a+l$d)/sqrt((l$a+l$b)*(l$a+l$c)*(l$b+l$d)*(l$c+l$d)))
+}
+
+gower.e.2 <- function(a,b,c,d,n){
   return((a+d)/sqrt((a+b)*(a+c)*(b+d)*(c+d)))
 }
 
-gower.legendre.e <- function(a,b,c,d,n){
+###############################################################################
+# Gower Legendre
+gower.legendre.e.1 <- function(l){
+  return((l$a+l$d)/(l$a+(0.5*(l$b+l$c))+l$d))
+}
+
+gower.legendre.e.2 <- function(a,b,c,d,n){
   return((a+d)/(a+(0.5*(b+c))+d))
 }
 
-hamann.e <- function(a,b,c,d,n){
+###############################################################################
+# Hamann
+hamann.e.1 <- function(l){
+  return(((l$a+l$d)-(l$b+l$c))/(l$a+l$b+l$c+l$d))
+}
+
+hamann.e.2 <- function(a,b,c,d,n){
   return(((a+d)-(b+c))/(a+b+c+d))
 }
 
-hamming.e <- function(a,b,c,d,n){
+###############################################################################
+# Hamming 
+hamming.e.1 <- function(l){
+  return(l$b+l$c)
+}
+
+hamming.e.2 <- function(a,b,c,d,n){
   return(b+c)
 }
 
-hellinger.e <- function(a,b,c,d,n){
+###############################################################################
+# Helllinger
+hellinger.e.1 <- function(l){
+  return(2 * sqrt(1 - ((l$a)/(sqrt((l$a+l$b)*(l$a+l$c))))))
+}
+
+hellinger.e.2 <- function(a,b,c,d,n){
   return(2 * sqrt(1 - ((a)/(sqrt((a+b)*(a+c))))))
 }
 
-inner.product.e <- function(a,b,c,d,n){
+###############################################################################
+# Inner Product
+inner.product.e.1 <- function(l){
+  return(l$a+l$d)
+}
+
+inner.product.e.2 <- function(a,b,c,d,n){
   return(a+d)
 }
 
-intersection.e <- function(a,b,c,d,n){
+###############################################################################
+# Intersection
+intersection.e.1 <- function(l){
+  return(l$a)
+}
+
+intersection.e.2 <- function(a,b,c,d,n){
   return(a)
 }
 
-jaccard.e <- function(a,b,c,d,n){
+###############################################################################
+# Jaccard
+jaccard.e.1 <- function(l){
+  return(l$a/(l$a+l$b+l$c))
+}
+
+jaccard.e.2 <- function(a,b,c,d,n){
   return(a/(a+b+c))
 }
 
-johnson.e <- function(a,b,c,d,n){
+###############################################################################
+# Jonhson
+jonhson.e.1 <- function(l){
+  return((l$a/(l$a+l$b)) + (l$a/(l$a+l$c)))
+}
+
+jonhson.e.2 <- function(a,b,c,d,n){
   return((a/(a+b)) + (a/(a+c)))
 }
 
-kulczynski.1.e <- function(a,b,c,d,n){
+###############################################################################
+# kulczynski 1
+kulczynski.1.e.1 <- function(l){
+  return(l$a/(l$b+l$c))
+}
+
+kulczynski.1.e.1 <- function(a,b,c,d,n){
   return(a/(b+c))
 }
 
-kulczynski.2.e <- function(a,b,c,d,n){
+###############################################################################
+# kulczynski 2
+kulczynski.2.e.1 <- function(l){
+  return((l$a/2) * ((2*l$a)+l$b+l$c))/(l$a+l$b)*(l$a+l$c)
+}
+
+kulczynski.2.e.2 <- function(a,b,c,d,n){
   return((a/2) * ((2*a)+b+c))/(a+b)*(a+c)
 }
 
-lance.williams.e <- function(a,b,c,d,n){
+###############################################################################
+# Lance Williams
+lance.williams.e.1 <- function(l){
+  return((l$b+l$c)/((2*l$a)+l$b+l$c))
+}
+
+lance.williams.e.2 <- function(a,b,c,d,n){
   return((b+c)/((2*a)+b+c))
 }
 
-manhattan.e <- function(a,b,c,d,n){
+###############################################################################
+# Manhattan 
+manhattan.e.1 <- function(l){
+  return(l$b+l$c)
+}
+
+manhattan.e.2 <- function(a,b,c,d,n){
   return(b+c)
 }
 
-mcconnaughey.e <- function(a,b,c,d,n){
+###############################################################################
+# Mcconnaughey
+mcconnaughey.e.1 <- function(l){
+  return(((l$a^2)-(l$b-l$c))/(l$a+l$b)*(l$a+l$c))
+}
+
+mcconnaughey.e.2 <- function(a,b,c,d,n){
   return(((a^2) - (b-c))/(a+b)*(a+c))
 }
 
-mean.manhattan.e <- function(a,b,c,d,n){
+###############################################################################
+# Mean Manhattan
+mean.manhattan.e.1 <- function(l){
+  return((l$b+l$c)/(l$a+l$b+l$c+l$d))
+}
+
+mean.manhattan.e.2 <- function(a,b,c,d,n){
   return((b+c)/(a+b+c+d))
 }
 
-michael.e <- function(a,b,c,d,n){
+###############################################################################
+# Michael
+michael.e.1 <- function(l){
+  return(4*((l$a*l$d)-(l$b*l$c))/((l$a+l$d)^2)+((l$b+l$c)^2))
+}
+
+michael.e.2 <- function(a,b,c,d,n){
   return(4*((a*d)-(b*c))/((a+d)^2)  + ((b+c)^2))
 }
 
-minowski.e <- function(a,b,c,d,n){
+###############################################################################
+# Minowski
+minowski.e.1 <- function(l){
+  return((l$b+l$c)^(1/1))
+}
+
+minowski.e.2 <- function(a,b,c,d,n){
   return((b+c)^(1/1))
 }
 
-mountford.e <- function(a,b,c,d,n){
+###############################################################################
+# Mountford
+mountford.e.1 <- function(l){
+  return(l$a/(0.5*(((l$a*l$b)+(l$a*l$c))+(l$b*l$c))))
+}
+
+mountford.e.2 <- function(a,b,c,d,n){
   return(a/(0.5*(((a*b)+(a*c))+(b*c))))
 }
 
-nei.li.e <- function(a,b,c,d,n){
+###############################################################################
+# Mean Manhattan
+nei.li.e.1 <- function(l){
+  return((2*l$a)/((l$a+l$b)+(l$a+l$c)))
+}
+
+nei.li.e.2 <- function(a,b,c,d,n){
   return((2*a)/((a+b)+(a+c)))
 }
 
-ochiai.2.e <- function(a,b,c,d,n){
+###############################################################################
+# Ochiai 2
+ochiai.2.e.1 <- function(l){
+  return((l$a*l$d)/sqrt((l$a+l$b)*(l$a+l$c)*(l$b+l$d)*(l$c+l$d)))
+}
+
+ochiai.2.e.1 <- function(a,b,c,d,n){
   return((a*d)/sqrt((a+b)*(a+c)*(b+d)*(c+d)))
 }
 
-otsuka.e <- function(a,b,c,d,n){
+###############################################################################
+# Otsuka
+otsuka.e.1 <- function(l){
+  return(l$a/((l$a+l$b)*(l$a+l$c))^0.5)
+}
+
+otsuka.e.2 <- function(a,b,c,d,n){
   return(a/((a+b)*(a+c))^0.5)
 }
 
-pattern.difference.e <- function(a,b,c,d,n){
+###############################################################################
+# Pattern Difference
+pattern.difference.e.1 <- function(l){
+  return((4*l$b*l$c)/((l$a+l$b+l$c+l$d)^2))
+}
+
+pattern.difference.e.2 <- function(a,b,c,d,n){
   return((4*b*c)/((a+b+c+d)^2))
 }
 
-pearson.1.e <- function(a,b,c,d,n){
+###############################################################################
+# Pearson 
+pearson.1.e.1 <- function(l){
+  return(l$n*(((l$a*l$d)-(l$b*l$c))^2)/(l$a+l$b)*(l$a+l$c)*(l$c+l$d)*(l$b+l$d))
+}
+
+pearson.1.e.2 <- function(a,b,c,d,n){
   return(n*(((a*d)-(b*c))^2)/(a+b)*(a+c)*(c+d)*(b+d))
 }
 
-pearson.2.e <- function(a,b,c,d,n){
+pearson.2.e.1 <- function(l){
+  z = pearson.1.e(l$a,l$b,l$c,l$d,l$n)
+  w = (z/(l$n*z))^(1/2)
+  return(w)
+}
+
+pearson.2.e.2 <- function(a,b,c,d,n){
   z = pearson.1.e(a,b,c,d,n)
   w = (z/(n*z))^(1/2)
   return(w)
 }
 
-pearson.3.e <- function(a,b,c,d,n){
+pearson.3.e.1 <- function(l){
+  z = ((l$a*l$d)-(l$b*l$c))/sqrt((l$a+l$b)*(l$a+l$c)*(l$b+l$d)*(l$c+l$d))
+  w = (z/(l$n+z))^(1/2)
+  return(w)
+}
+
+pearson.3.e.2 <- function(a,b,c,d,n){
   z = ((a*d)-(b*c))/sqrt((a+b)*(a+c)*(b+d)*(c+d))
   w = (z/(n+z))^(1/2)
   return(w)
 }
 
-pearson.heron.1.e <- function(a,b,c,d,n){
+pearson.heron.1.e.1 <- function(l){
+  return((l$a*l$d)-(l$b*l$c)/(l$a+l$b)*(l$a+l$c)*(l$b+l$d)*(l$c+d))
+}
+
+pearson.heron.1.e.2 <- function(a,b,c,d,n){
   return((a*d)-(b*c)/(a+b)*(a+c)*(b+d)*(c+d))
 }
 
-pearson.heron.2.e <- function(a,b,c,d,n){
+pearson.heron.2.e.1 <- function(l){
+  return(cos(pi*(sqrt(l$b*l$c))/sqrt(l$a*l$d)+sqrt(l$b*l$c)))
+}
+
+pearson.heron.2.e.2 <- function(a,b,c,d,n){
   return(cos(pi*(sqrt(b*c))/sqrt(a*d)+sqrt(b*c)))
 }
 
+###############################################################################
+# Pearson 
 peirce.e <- function(a,b,c,d,n){
   return((a*b)+(b*c)/((a*b)+(2*b*c)+(c*d)))
 }
 
-roger.tanimoto.e <- function(a,b,c,d,n){
+###############################################################################
+# Roger Tanimoto 
+roger.tanimoto.e.1 <- function(l){
+  return((l$a+l$d)/(2*(l$b+l$c)+l$d))
+}
+
+roger.tanimoto.e.2 <- function(a,b,c,d,n){
   return((a+d)/(2*(b+c)+d))
 }
 
-russel.rao.e <- function(a,b,c,d,n){
+###############################################################################
+# Russel Rao 
+russel.rao.e.1 <- function(l){
+  return(l$a/(l$a+l$b+l$c+l$d))
+}
+
+russel.rao.e.2 <- function(a,b,c,d,n){
   return(a/(a+b+c+d))
 }
 
-shape.differnece.e <- function(a,b,c,d,n){
+###############################################################################
+# Shape Difference 
+shape.differnece.e.1 <- function(l){
+  return((l$n*(l$b+l$c)-((l$b-l$c)^2))/((l$a+l$b+l$c+l$d)^2))
+}
+
+shape.differnece.e.2 <- function(a,b,c,d,n){
   return((n*(b+c)-((b-c)^2))/((a+b+c+d)^2))
 }
 
-simpson.e <- function(a,b,c,d,n){
+###############################################################################
+# Simpson
+simpson.e.1 <- function(l){
+  return(l$a/min((l$a+l$b),(l$a+l$c)))
+}
+
+simpson.e.2 <- function(a,b,c,d,n){
   return(a/min((a+b),(a+c)))
 }
 
-size.difference.e <- function(a,b,c,d,n){
+###############################################################################
+# Size Difference 
+size.difference.e.1 <- function(l){
+  return(((l$b+l$c)^2)/((l$a+l$b+l$c+l$d)^2))
+}
+
+size.difference.e.2 <- function(a,b,c,d,n){
   return(((b+c)^2)/((a+b+c+d)^2))
 }
 
-sokal.michener.e <- function(a,b,c,d,n){
+###############################################################################
+# Sokal 
+sokal.michener.e.1 <- function(l){
+  return((l$a+l$d)/(l$a+l$b+l$c+l$d))
+}
+
+sokal.michener.e.2 <- function(a,b,c,d,n){
   return((a+d)/(a+b+c+d))
 }
 
-sokal.sneath.1.e <- function(a,b,c,d,n){
+sokal.sneath.1.e.1 <- function(l){
+  return(l$a/(l$a+(2*l$b)+(2*l$c)))
+}
+
+sokal.sneath.1.e.2 <- function(a,b,c,d,n){
   return(a/(a+(2*b)+(2*c)))
 }
 
-sokal.sneath.2.e <- function(a,b,c,d,n){
+sokal.sneath.2.e.1 <- function(l){
+  return(2*(l$a+l$d)/((2*l$a)+l$b+l$c+(2*l$d)))
+}
+
+sokal.sneath.2.e.2 <- function(a,b,c,d,n){
   return(2*(a+d)/((2*a)+b+c+(2*d)))
 }
 
-sokal.sneath.3.e <- function(a,b,c,d,n){
+sokal.sneath.3.e.1 <- function(l){
+  return((l$a+l$d)/(l$b+l$c))
+}
+
+sokal.sneath.3.e.2 <- function(a,b,c,d,n){
   return((a+d)/(b+c))
 }
 
-sokal.sneath.4.e <- function(a,b,c,d,n){
+sokal.sneath.4.e.1 <- function(l){
+  return(((l$a/(l$a+l$b))+(l$a/(l$a+l$c))+(l$d/(l$b+l$d))+(l$d/(l$b+l$d)))/4)
+}
+
+sokal.sneath.4.e.2 <- function(a,b,c,d,n){
   return(((a/(a+b))+(a/(a+c))+(d/(b+d))+(d/(b+d)))/4)
 }
 
-sokal.sneath.5.e <- function(a,b,c,d,n){
+sokal.sneath.5.e.1 <- function(l){
+  return((l$a*l$d)/(l$a+l$b)*(l$a+l$c)*(l$b+l$d)*((l$c*l$d)^0.5))
+}
+
+sokal.sneath.5.e.2 <- function(a,b,c,d,n){
   return((a*d)/(a+b)*(a+c)*(b+d)*((c*d)^0.5))
 }
 
-sorgenfrei.e <- function(a,b,c,d,n){
+###############################################################################
+# Sorgenfrei
+sorgenfrei.e.1 <- function(l){
+  return((l$a^2)/(l$a+l$b)*(l$a+l$c))
+}
+
+sorgenfrei.e.2 <- function(a,b,c,d,n){
   return((a^2)/(a+b)*(a+c))
 }
 
-square.euclidean.e <- function(a,b,c,d,n){
+###############################################################################
+# Square Euclidean
+square.euclidean.e.1 <- function(l){
+  return(sqrt((l$b+l$c)^2))
+}
+
+square.euclidean.e.2 <- function(a,b,c,d,n){
   return(sqrt((b+c)^2))
 }
 
-stiles.e <- function(a,b,c,d,n){
+###############################################################################
+# Stiles
+stiles.e.1 <- function(l){
+  return(log10((l$n*(abs((l$a*l$d)-(l$b*l$c))-(l$n/2))^2) /((l$a+l$b)*(l$a+l$c)*(l$b+l$d)*(l$c+l$d))))
+}
+
+stiles.e.2 <- function(a,b,c,d,n){
   return(log10((n*(abs((a*d)-(b*c))-(n/2))^2) /((a+b)*(a+c)*(b+d)*(c+d))))
 }
 
-tanimoto.e <- function(a,b,c,d,n){
+###############################################################################
+# Tanimoto
+tanimoto.e.1 <- function(l){
+  return(l$a/((l$a+l$b)+(l$a+l$c)-l$a))
+}
+
+tanimoto.e.2 <- function(a,b,c,d,n){
   return(a/((a+b)+(a+c)-a))
 }
 
-tarantula.e <- function(a,b,c,d,n){
+###############################################################################
+# Tarantula
+tarantula.e.1 <- function(l){
+  return((l$a*(l$c+l$d))/(l$c*(l$a+l$b)))
+}
+
+tarantula.e.2 <- function(a,b,c,d,n){
   return((a*(c+d))/(c*(a+b)))
 }
 
-tarwid.e <- function(a,b,c,d,n){
+###############################################################################
+# Tarwid
+tarwid.e.1 <- function(l){
+  return((l$n*l$a)-(l$a+l$b)*(l$a+l$c)/(l$n*l$a)+(l$a+l$b)*(l$a+l$c))
+}
+
+tarwid.e.2 <- function(a,b,c,d,n){
   return((n*a) - (a+b) * (a+c) / (n*a) + (a+b) * (a+c))
 }
 
-three.w.jaccard.e <- function(a,b,c,d,n){
+###############################################################################
+# 3W Jaccard
+three.w.jaccard.e.1 <- function(l){
+  return((3*l$a)/((3*l$a)+l$b+l$c))
+}
+
+three.w.jaccard.e.2 <- function(a,b,c,d,n){
   return((3*a)/((3*a)+b+c))
 }
 
-vari.e <- function(a,b,c,d,n){
+###############################################################################
+# Vari
+vari.e.1 <- function(l){
+  return((l$b+l$c)/(4*(l$a+l$b+l$c+l$d)))
+}
+
+vari.e.2 <- function(a,b,c,d,n){
   return((b+c)/(4*(a+b+c+d)))
 }
 
-yuleq.1.e <- function(a,b,c,d,n){
+###############################################################################
+# Yuleq
+yuleq.1.e.1 <- function(l){
+  return(((l$a*l$d)-(l$b*l$c))/((l$a*l$d)+(l$b*l$c)))
+}
+
+yuleq.1.e.2 <- function(a,b,c,d,n){
   return(((a*d)-(b*c))/((a*d)+(b*c)))
 }
 
-yuleq.2.e <- function(a,b,c,d,n){
+yuleq.2.e.1 <- function(l){
+  return((2*l$b*l$c)/(l$a*l$d)+(l$b*l$c))
+}
+
+yuleq.2.e.2 <- function(a,b,c,d,n){
   return((2*b*c)/(a*d) + (b*c))
 }
 
-yule.w.e <- function(a,b,c,d,n){
+yule.w.e.1 <- function(l){
+  return(sqrt((l$a*l$d))-sqrt((l$b*l$c))/sqrt((l$a*l$d))+sqrt((l$b*l$c)))
+}
+
+yule.w.e.2 <- function(a,b,c,d,n){
   return(sqrt((a*d))-sqrt((b*c))/sqrt((a*d))+sqrt((b*c)))
 }
 
+
+###############################################################################
 # get name list
 getNamesListFunctions <- function(){
-  names_function = c("ample.e ",
+  retorno = list()
+  names_function = c("ample.e",
                    "anderberg.e ",
                    "baroni.urbani.buser.1.e",
                    "baroni.urbani.buser.2.e",
@@ -424,5 +1007,8 @@ getNamesListFunctions <- function(){
                    "yule.w.e ",
                    "yuleq.1.e",
                    "yuleq.2.e")
-  return(names_function)
+  retorno$nomes_funcoes = names_function
+  retorno$tamanho = length(names_function)
+  return(retorno)
+  gc()
 }

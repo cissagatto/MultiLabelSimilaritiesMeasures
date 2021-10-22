@@ -261,7 +261,7 @@ compute.covar <- function(labels, num.labels, ad, bc){
 #'
 #' @examples
 #' 
-compute.measure <- function(labels, num.labels, a, b, c, d, n, name, FUN){
+compute.measure.2 <- function(labels, num.labels, a, b, c, d, n, name, FUN){
   
   retorno = list()
   
@@ -284,10 +284,12 @@ compute.measure <- function(labels, num.labels, a, b, c, d, n, name, FUN){
     gc()
   } # enf extern for  
   
-  setwd("~/MultiLabelSimilaritiesMeasures/Docs")
-  nome = paste(name, "result.csv", sep="-")
-  write.csv(m, nome)
-  
   return(m)
   gc()
+}
+
+compute.measure <- function(Fun, ...) {
+  Args <- list(...)
+  Args <- lapply(Args, function(M) apply(X = M, MARGIN = c(1,2), FUN = as.numeric))
+  Fun(Args)
 }
