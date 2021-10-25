@@ -102,3 +102,8 @@ compute.n <- function(a,b,c,d){
 covariance <- function(x,y){
   return((x-y)==0)
 }
+
+
+################################################################################
+# any errors, please, contact me: elainececiliagatto@gmail.com                 #
+################################################################################

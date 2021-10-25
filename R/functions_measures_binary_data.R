@@ -1405,3 +1405,8 @@ getNamesListFunctions <- function(){
   return(retorno)
   gc()
 }
+
+
+################################################################################
+# any errors, please, contact me: elainececiliagatto@gmail.com                 #
+################################################################################

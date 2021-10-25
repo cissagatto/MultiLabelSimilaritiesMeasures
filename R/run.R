@@ -110,6 +110,7 @@ m.d = res1$md
 
 # compute ab, ac, ad, bc, bd and cd
 res2 = compute.marg.probs(labels, num.labels, m.a, m.b, m.c, m.d)
+res2
 
 # results from res2
 m.ab = res2$mab
@@ -123,6 +124,10 @@ m.n = res2$mn
 # covariance
 res3 = compute.covar(labels, num.labels, m.ad, m.bc)
 res3
+
+# compute total classes and conditional probabilities
+res4 <- computeInitialClassProbabilitiesTotals(labels)
+res4
 
 # get the names of similarities functions
 funs = getNamesListFunctions()
@@ -1037,6 +1042,8 @@ write.csv(result2, "yuleq-2-2.csv")
 
 result1 == result2
 rm(result1, result2)
+
+
 
 
 ################################################################################

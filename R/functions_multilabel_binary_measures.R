@@ -242,7 +242,6 @@ compute.covar <- function(labels, num.labels, ad, bc){
   gc()
 }
 
-
 # ALL ----------------------------------------------------------------
 #' Measure for categorial data
 #'
@@ -293,3 +292,82 @@ compute.measure <- function(Fun, ...) {
   Args <- lapply(Args, function(M) apply(X = M, MARGIN = c(1,2), FUN = as.numeric))
   Fun(Args)
 }
+
+
+################################################################################
+# Compute probabilities p(i) and p(i|j)
+# Also counts total of examples per classes and intersections
+# -------------------------------------------------------------------------------------
+# classes data frame, index of classes
+get.probabilities <- function(classes,i,j){
+  
+  #cat("\n Get Probabilities")
+  
+  result <- list()
+  result$prob <- 0
+  result$total <- 0
+  
+  if(i == j){ 
+    #cat("\n Compute p(i)")
+    total.i <- length(which(classes[,i]==1))
+    total <- nrow(classes)
+    result$total <- total.i
+    result$prob <- total.i / total
+  }
+  else{ 
+    #cat("\n Compute p(i|j)")
+    total.j <- length(which(classes[,j]==1))
+    examples.i <- which(classes[,i]==1)
+    examples.j <- which(classes[,j]==1)
+    intersect.i.j <- intersect(examples.i,examples.j)
+    total.i.j <- length(intersect.i.j)
+    result$total <- total.i.j
+    result$prob <- total.i.j / total.j
+  }	
+  
+  return(result)
+}
+
+# Compute class totals and class probabilities
+# -------------------------------------------------------------------------------------------------
+computeInitialClassProbabilitiesTotals <- function(classes){
+
+  result <- list()
+  num.classes <- ncol(classes) # number of initial classes. 
+  
+  #cat("\n Fill class probabilities matrix and")
+  #cat("\n fill the total counts of examples per class and intersections")
+  
+  class.probabilities <- matrix(nrow=num.classes, ncol=num.classes, data=0)
+  class.totals <- matrix(nrow=num.classes, ncol=num.classes, data=0)
+  
+  u = (num.labels*num.labels) # tamanho da matriz 
+  pb <- progress_bar$new(total = u) # barra de progresso
+  
+  #cat("\n p(i) or p(i|j) and totals")
+  for(i in 1:num.classes){
+    for(j in 1:num.classes){
+      class.prob.totals <- get.probabilities(classes,i,j)  
+      class.probabilities[i,j] <- class.prob.totals$prob
+      class.totals[i,j] <- class.prob.totals$total
+      pb$tick()
+      Sys.sleep(1/u)
+    }
+  }
+  
+  #cat("\n Name class totals and class probabilities columns and rows")
+  rownames(class.probabilities) <- paste("Class",c(1:ncol(classes)),sep="")
+  colnames(class.probabilities) <- paste("Class",c(1:ncol(classes)),sep="")
+  rownames(class.totals) <- paste("Class",c(1:ncol(classes)),sep="")
+  colnames(class.totals) <- paste("Class",c(1:ncol(classes)),sep="")
+  
+  result$class.totals <- class.totals
+  result$class.probabilities <- class.probabilities
+  
+  return(result)
+}
+
+
+################################################################################
+# any errors, please, contact me: elainececiliagatto@gmail.com                 #
+################################################################################
