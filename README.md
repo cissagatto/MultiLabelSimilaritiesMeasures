@@ -20,7 +20,7 @@ This code has the following script in the R folder
 
 
 ## Folder Path
-Place a copy of this code in _"C:/Users/[username]/BellPartitionsMultiLabel"_ or _"/home/username/BellPartitionsMultiLabel"_. You can change the path in the code if you want.
+Place a copy of this code in _"C:/Users/[username]/MultiLabelSimilaritieMeasures"_ or _"/home/[username]/MultiLabelSimilaritieMeasures"_. You can change the path in the code if you want.
 
 ## File "datasets.csv"
 A file called *datasets.csv* must be in the root project folder. This file is used to read information about the datasets and they are used in the code. All 74 datasets available in cometa (https://cometa.ujaen.es/) are in this file. If you want to use another dataset, please, add the following information about the dataset in the file:
