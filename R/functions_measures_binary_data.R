@@ -1320,6 +1320,56 @@ yule.w.e.2 <- function(a,b,c,d,n){
   return(sqrt((a*d))-sqrt((b*c))/sqrt((a*d))+sqrt((b*c)))
 }
 
+##################################################################################
+compute.cerri.ferrandin <- function(dados, labels, ds, k){
+  
+  u = (ds$Labels*ds$Labels)
+  pb <- progress_bar$new(total = u)
+  
+  firstLabel <- ds$LabelStart
+  lastLabel <- ds$LabelEnd
+  lastAtt <- ds$AttEnd
+  classes <- seq(firstLabel,lastLabel)
+  df = dados
+  
+  # compute probability
+  p <- data.frame()
+  for (i in 1:length(classes)){
+    pi = colSums(df[which(df[,classes[i]] == 1),1:lastAtt])/sum(df[,classes[i]])
+    p <- rbind(p,pi)
+  }
+  colnames(p) <- colnames(df)[1:lastAtt]
+  
+  # find knn
+  findknn <- function(df, pi, k){
+    dists <- sqrt(rowSums(sweep(as.matrix(df[,1:lastAtt]),2, as.numeric(pi),"-")^2))
+    knn <- data.frame(rownames(df),dists);
+    colnames(knn) <- c("nearest", "dist")
+    knn <- knn[order(knn$dist),]
+    knn <- knn[1:k,]
+    findknn <- knn
+  }
+  
+  # build the correlation matrix
+  sim <- build.matrix.corr(ds$Labels, labels)
+  
+  # compute
+  for (i in 1:length(classes)){
+    knndist <- findknn(df, p[i,], k)
+    knnids <- knndist[1]
+    dfknn <- df[as.list(knnids)[[1]],]
+    for (j in 1:length(classes)){
+      
+      pj = colSums(dfknn[which(dfknn[,classes[j]] == 1),1:lastAtt])/k
+      
+      sim[i,j] = sqrt(sum((pi - pj)^2))
+      #print(pi - pj)
+    }
+  }
+  
+  return(sim)
+  
+}
 
 ###############################################################################
 # get name list

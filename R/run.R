@@ -81,6 +81,8 @@ datasets = read.csv("datasets.csv")
 ds = datasets[29,]
 start.label = ds$LabelStart
 end.label = ds$LabelEnd
+start.att  = as.numeric(ds$AttStart)
+end.att  = as.numeric(ds$AttEnd)
 num.labels = ds$Labels
 num.instances = nrow(dados)
 num.attributes = ncol(dados)
@@ -1042,6 +1044,15 @@ write.csv(result2, "yuleq-2-2.csv")
 
 result1 == result2
 rm(result1, result2)
+
+
+################################################################################
+# measure from cerri and mauri
+Folder = paste(FolderDatasets, "/GpositiveGO/CrossValidation/Tr", sep="")
+setwd(Folder)
+dados.2 = read.csv("GpositiveGO-Split-Tr-1.csv", stringsAsFactors = FALSE)
+result0 = compute.cerri.ferrandin(dados.2, labels, ds, k=20)
+write.csv(result0, "cerri-ferrandin.csv")
 
 
 
