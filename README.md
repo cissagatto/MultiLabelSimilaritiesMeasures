@@ -33,8 +33,7 @@ The _"Id"_ of the dataset is a mandatory parameter in the command line to run al
 You will need the originals datasets to run this code. Please, make sure that the folder *datasets* contain the arrf and xml files from cometa.
 
 ## RUN
-The script RUN is a example of how to test each measure function.
-
+The script RUN has several examples of how to test each measure function.
 
 
 
