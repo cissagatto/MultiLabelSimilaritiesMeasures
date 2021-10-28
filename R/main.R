@@ -18,10 +18,6 @@
 ##################################################################################################
 
 ##################################################################################################
-# Script 1 - Libraries                                                                           #
-##################################################################################################
-
-##################################################################################################
 # Configures the workspace according to the operating system                                     #
 ##################################################################################################
 sistema = c(Sys.info())
@@ -35,29 +31,59 @@ if (sistema[1] == "Linux"){
 }
 setwd(FolderRoot)
 FolderScripts = paste(FolderRoot, "/R/", sep="")
+
+
+
+##################################################################################################
+# LOAD SOURCES                                                                                   #
+##################################################################################################
 setwd(FolderScripts)
+source("libraries.R")
+
+setwd(FolderScripts)
+source("utils.R")
+
+setwd(FolderScripts)
+source("CrossValidationMultiLabel.R")
 
 
 ##################################################################################################
-# LOAD EXTERNAL LIBRARIES                                                                        #
+# MAIN                                                                                           #
+#   Objective                                                                                    #
+
+#   Parameters                                                                                   #
+#       dataset_name: dataset name. It is used to save files.                                    #
+#       number_folds: number of folds to be created                                              #
+#   Return                                                                                       #
 ##################################################################################################
-
-#library("googledrive") 
-library("readr", quietly = TRUE) 
-library("foreign", quietly = TRUE) 
-library("stringr", quietly = TRUE) 
-library("rJava", quietly = TRUE) 
-library("RWeka", quietly = TRUE) 
-library("mldr", quietly = TRUE) 
-library("parallel", quietly = TRUE) 
-library("utiml", quietly = TRUE)
-library("foreach", quietly = TRUE) 
-library("doParallel", quietly = TRUE) 
-library("dplyr", quietly = TRUE) 
-
+CrossValidationMultiLabel <- function(folders, ds, dataset_name,
+                                      number_dataset, number_folds, 
+                                      validation, FolderResults){
+  
+    cat("\nCall Label Space")
+  if(number_folds==1){
+    cat("\n Number folds == 1. Please, run again with a number_folds > 1!")
+    
+  } else {
+    
+    cat("\n Compute Cross Validation")
+    timeCVM = system.time(resCVM <- CrossVal(folders, ds, dataset_name, number_cores,
+                                             number_dataset, number_folds, 
+                                             validation, FolderResults))
+    
+    cat("\nTreat Label Space Information")
+    timeLS = system.time(resLS <- LabelSpace(folders, ds, dataset_name, number_cores,
+                                             number_dataset, number_folds))       
+  }
+  
+    
+  setwd(folders$FolderDS)
+  Runtime = rbind(timeCVM, timeLS)
+  write.csv(Runtime, "RunTime.csv")
+  
+}
 
 ##################################################################################################
 # Please, any errors, contact us: elainececiliagatto@gmail.com                                   #
 # Thank you very much!                                                                           #
 ##################################################################################################
-
