@@ -1382,7 +1382,6 @@ getNamesListFunctions <- function(){
                    "braun.banquet.e",
                    "bray.curtis.e",
                    "canberra.e",
-                   "cerri.ferrandin",
                    "chord.e ",
                    "cityblock.e",
                    "cole.e",
