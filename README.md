@@ -69,7 +69,7 @@ This will execute the code for the dataset number 17 in the _dataset.csv_, with 
 
 
 ## Folder Structure
-<img src="" width="300">
+<img src="https://github.com/cissagatto/MultiLabelSimilaritiesMeasures/blob/main/images/mlsm.png" width="300">
 
 ## Acknowledgment
 This study is financed in part by the Coordenação de Aperfeiçoamento de Pessoal de Nível Superior - Brasil (CAPES) - Finance Code 001
