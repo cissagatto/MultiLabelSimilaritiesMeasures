@@ -20,6 +20,7 @@ This code has the following script in the R folder
 6. runCV.R
 7. runNCV.R
 8. mlsm.R
+9. generateJobsConda.R
 
 
 ## Preparing your experiment
