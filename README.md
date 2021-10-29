@@ -67,6 +67,9 @@ Rscript mlsm.R 17 10 10 "/dev/shm/results"
 This will execute the code for the dataset number 17 in the _dataset.csv_, with 10 cores, 10 folds and the process will be store in the _/dev/shm/results/_. This code automatically makes a copy of the */dev/shm/results* in the folder *Reports* - which is in the root of the project. In this way, you can run the code using a temporary folder, like *scratch* and *shm*, to speed up the execution.
 
 
+## Folder Structure
+<img src="" width="300">
+
 ## Acknowledgment
 This study is financed in part by the Coordenação de Aperfeiçoamento de Pessoal de Nível Superior - Brasil (CAPES) - Finance Code 001
 
