@@ -197,7 +197,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "ample-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[1], ample.e.2)
-    write.csv(result2, "ample-2.csv")
+    write.csv(result2, "ample.csv")
     
     rm(result1, result2)
     
@@ -209,7 +209,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "anderberg-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[2], anderberg.e.2)
-    write.csv(result2, "anderberg-2.csv")
+    write.csv(result2, "anderberg.csv")
     
     rm(result1, result2)
     
@@ -220,7 +220,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "baroni-urbani-user-1-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[3], baroni.urbani.buser.1.e.2)
-    write.csv(result2, "baroni-urbani-user-1-2.csv")
+    write.csv(result2, "baroni-urbani-user-1.csv")
     
     rm(result1, result2)
     
@@ -232,7 +232,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "baroni-urbani-user-2-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[4], baroni.urbani.buser.2.e.2)
-    write.csv(result2, "baroni-urbani-user-2-2.csv")
+    write.csv(result2, "baroni-urbani-user-2.csv")
     
     rm(result1, result2)
     
@@ -244,7 +244,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "baroni-branquet-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[5], braun.banquet.e.2)
-    write.csv(result2, "baroni-branquet-2.csv")
+    write.csv(result2, "baroni-branquet.csv")
     
     rm(result1, result2)
     
@@ -255,7 +255,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "bray-curtis-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[6], bray.curtis.e.2)
-    write.csv(result2, "bray-curtis-2.csv")
+    write.csv(result2, "bray-curtis.csv")
     
     rm(result1, result2)
     
@@ -266,7 +266,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "canberra-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[7], canberra.e.2)
-    write.csv(result2, "canberra-2.csv")
+    write.csv(result2, "canberra.csv")
     
     rm(result1, result2)
     
@@ -277,7 +277,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "chord-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[8], chord.e.2)
-    write.csv(result2, "chord-2.csv")
+    write.csv(result2, "chord.csv")
     
     rm(result1, result2)
     
@@ -288,7 +288,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "cityblock-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[9], cityblock.e.2)
-    write.csv(result2, "cityblock-2.csv")
+    write.csv(result2, "cityblock.csv")
     
     rm(result1, result2)
     
@@ -299,7 +299,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "cole-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n,funs[10], cole.e.2)
-    write.csv(result2, "cole-2.csv")
+    write.csv(result2, "cole.csv")
     
     rm(result1, result2)
     
@@ -310,7 +310,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "cosine-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n,funs[11], cosine.e.2)
-    write.csv(result2, "cosine-2.csv")
+    write.csv(result2, "cosine.csv")
     
     rm(result1, result2)
     
@@ -321,7 +321,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "czekanowski-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[12], czekanowski.e.2)
-    write.csv(result2, "czekanowski-2.csv")
+    write.csv(result2, "czekanowski.csv")
     
     rm(result1, result2)
     
@@ -332,7 +332,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "dennis-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[13], dennis.e.2)
-    write.csv(result2, "dennis-2.csv")
+    write.csv(result2, "dennis.csv")
     
     rm(result1, result2)
     
@@ -343,7 +343,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "dice-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[14], dice.e.2)
-    write.csv(result2, "dice-2.csv")
+    write.csv(result2, "dice.csv")
     
     rm(result1, result2)
     
@@ -354,7 +354,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "disperson-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[15], disperson.e.2)
-    write.csv(result2, "disperson-2.csv")
+    write.csv(result2, "disperson.csv")
     
     rm(result1, result2)
     
@@ -365,7 +365,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "driver-kroeber-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[16], driver.kroeber.e.2)
-    write.csv(result2, "driver-kroeber-2.csv")
+    write.csv(result2, "driver-kroeber.csv")
     
     rm(result1, result2)
     
@@ -376,7 +376,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "euclidean-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[17], euclidean.e.2)
-    write.csv(result2, "euclidean-2.csv")
+    write.csv(result2, "euclidean.csv")
     
     rm(result1, result2)
     
@@ -387,7 +387,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "eyraud-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[18], eyraud.e.2)
-    write.csv(result2, "eyraud-2.csv")
+    write.csv(result2, "eyraud.csv")
     
     rm(result1, result2)
     
@@ -399,7 +399,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "fager-mcgowan-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n,funs[19], fager.mcgowan.e.2)
-    write.csv(result2, "fager-mcgowan-2.csv")
+    write.csv(result2, "fager-mcgowan.csv")
     
     rm(result1, result2)
     
@@ -410,7 +410,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "faith-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[20], faith.e.2)
-    write.csv(result2, "faith-2.csv")
+    write.csv(result2, "faith.csv")
     
     rm(result1, result2)
     
@@ -422,7 +422,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "forbes-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n,funs[21], forbes.2.e.2)
-    write.csv(result2, "forbes-2.csv")
+    write.csv(result2, "forbes.csv")
     
     rm(result1, result2)
     
@@ -434,7 +434,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "forbesi-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[22], forbesi.e.2)
-    write.csv(result2, "forbesi-2.csv")
+    write.csv(result2, "forbesi.csv")
     
     rm(result1, result2)
     
@@ -442,10 +442,10 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     # 23. Fossum
     # retornou valores positivos
     result1 = compute.measure(Fun = fossum.e.1, a = m.a, b = m.b, c = m.c, n = m.n)
-    write.csv(result1, "fossum.e-1.csv")
+    write.csv(result1, "fossum-e-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[23], fossum.e.2)
-    write.csv(result2, "fossum.e-2.csv")
+    write.csv(result2, "fossum-e.csv")
     
     rm(result1, result2)
     
@@ -456,7 +456,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "gilbert-well-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[24], gilbert.well.e.2)
-    write.csv(result2, "gilbert-well-2.csv")
+    write.csv(result2, "gilbert-well.csv")
     
     rm(result1, result2)
     
@@ -468,7 +468,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "goodman-kruskal-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[25], goodman.kruskal.e.2)
-    write.csv(result2, "goodman-kruskal-2.csv")
+    write.csv(result2, "goodman-kruskal.csv")
     
     rm(result1, result2)
     
@@ -479,7 +479,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "gower-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[26], gower.e.2)
-    write.csv(result2, "gower-2.csv")
+    write.csv(result2, "gower.csv")
     
     rm(result1, result2)
     
@@ -490,7 +490,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "gower-legendre-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[27], gower.legendre.e.2)
-    write.csv(result2, "gower-legendre-2.csv")
+    write.csv(result2, "gower-legendre.csv")
     
     rm(result1, result2)
     
@@ -501,7 +501,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "hamann-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[28], hamann.e.2)
-    write.csv(result2, "hamann-2.csv")
+    write.csv(result2, "hamann.csv")
     
     rm(result1, result2)
     
@@ -512,7 +512,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "hamming-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[29], hamming.e.2)
-    write.csv(result2, "hamming-2.csv")
+    write.csv(result2, "hamming.csv")
     
     rm(result1, result2)
     
@@ -523,7 +523,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "hellinger-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[30], hellinger.e.2)
-    write.csv(result2, "hellinger-2.csv")
+    write.csv(result2, "hellinger.csv")
     
     rm(result1, result2)
     
@@ -534,7 +534,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "inner-product-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[31], inner.product.e.2)
-    write.csv(result2, "inner-product-2.csv")
+    write.csv(result2, "inner-product.csv")
     
     rm(result1, result2)
     
@@ -545,7 +545,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "intersection-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[32], intersection.e.2)
-    write.csv(result2, "intersection-2.csv")
+    write.csv(result2, "intersection.csv")
     
     rm(result1, result2)
     
@@ -556,7 +556,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "jaccard-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[33], jaccard.e.2)
-    write.csv(result2, "jaccard-2.csv")
+    write.csv(result2, "jaccard.csv")
     
     rm(result1, result2)
     
@@ -567,7 +567,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "jonhson-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[34], jonhson.e.2)
-    write.csv(result2, "jonhson-2.csv")
+    write.csv(result2, "jonhson.csv")
     
     rm(result1, result2)
     
@@ -578,7 +578,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "kulczynski-1-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[35], kulczynski.1.e.2)
-    write.csv(result2, "kulczynski-1-2.csv")
+    write.csv(result2, "kulczynski-1.csv")
     
     rm(result1, result2)
     
@@ -589,7 +589,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "kulczynski-2-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[36], kulczynski.2.e.2)
-    write.csv(result2, "kulczynski-2-2.csv")
+    write.csv(result2, "kulczynski-2.csv")
     
     rm(result1, result2)
     
@@ -600,7 +600,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "lance-williams-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[37], lance.williams.e.2)
-    write.csv(result2, "lance-williams-2.csv")
+    write.csv(result2, "lance-williams.csv")
     
     rm(result1, result2)
     
@@ -611,7 +611,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "manhattan-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[38], manhattan.e.2)
-    write.csv(result2, "manhattan-2.csv")
+    write.csv(result2, "manhattan.csv")
     
     rm(result1, result2)
     
@@ -622,7 +622,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "mcconnaughey-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[39], mcconnaughey.e.2)
-    write.csv(result2, "mcconnaughey-2.csv")
+    write.csv(result2, "mcconnaughey.csv")
     
     rm(result1, result2)
     
@@ -633,7 +633,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "mean-manhattan-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[40], mean.manhattan.e.2)
-    write.csv(result2, "mean-manhattan-2.csv")
+    write.csv(result2, "mean-manhattan.csv")
     
     rm(result1, result2)
     
@@ -644,7 +644,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "michael-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[41], michael.e.2)
-    write.csv(result2, "michael-2.csv")
+    write.csv(result2, "michael.csv")
     
     rm(result1, result2)
     
@@ -655,7 +655,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "minowski-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[42], minowski.e.2)
-    write.csv(result2, "minowski-2.csv")
+    write.csv(result2, "minowski.csv")
     
     rm(result1, result2)
     
@@ -666,7 +666,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "mountford-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[43], mountford.e.2)
-    write.csv(result2, "mountford-2.csv")
+    write.csv(result2, "mountford.csv")
     
     rm(result1, result2)
     
@@ -677,7 +677,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "nei-li-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[44], nei.li.e.2)
-    write.csv(result2, "nei-li-1.csv")
+    write.csv(result2, "nei-li.csv")
     
     rm(result1, result2)
     
@@ -688,7 +688,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "ochiai-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[45], ochiai.2.e.2)
-    write.csv(result2, "ochiai-2.csv")
+    write.csv(result2, "ochiai.csv")
     
     rm(result1, result2)
     
@@ -699,7 +699,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "otsuka-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[46], otsuka.e.2)
-    write.csv(result2, "otsuka-2.csv")
+    write.csv(result2, "otsuka.csv")
     
     rm(result1, result2)
     
@@ -710,7 +710,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "pattern-difference-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[47], pattern.difference.e.2)
-    write.csv(result2, "pattern-difference-2.csv")
+    write.csv(result2, "pattern-difference.csv")
     
     rm(result1, result2)
     
@@ -721,7 +721,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "pearson-1-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[48], pearson.1.e.2)
-    write.csv(result2, "pearson-1-2.csv")
+    write.csv(result2, "pearson-1.csv")
     
     rm(result1, result2)
     
@@ -732,7 +732,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "pearson-2-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[49], pearson.2.e.2)
-    write.csv(result2, "pearson-2-2.csv")
+    write.csv(result2, "pearson-2.csv")
     
     rm(result1, result2)
     
@@ -743,7 +743,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "pearson-3-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[50], pearson.3.e.2)
-    write.csv(result2, "pearson-3-2.csv")
+    write.csv(result2, "pearson-3.csv")
     
     rm(result1, result2)
     
@@ -754,7 +754,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "pearson-heron-1-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[51], pearson.heron.1.e.2)
-    write.csv(result2, "pearson-heron-1-2.csv")
+    write.csv(result2, "pearson-heron-1.csv")
     
     rm(result1, result2)
     
@@ -765,7 +765,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "pearson-heron-2-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[52], pearson.heron.2.e.2)
-    write.csv(result2, "pearson-heron-2-.csv")
+    write.csv(result2, "pearson-heron.csv")
     
     rm(result1, result2)
     
@@ -776,7 +776,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "peirce-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[53], peirce.e.2)
-    write.csv(result2, "peirce-2.csv")
+    write.csv(result2, "peirce.csv")
     
     rm(result1, result2)
     
@@ -787,7 +787,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "roger-tanimoto-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[54], roger.tanimoto.e.2)
-    write.csv(result2, "roger-tanimoto-2.csv")
+    write.csv(result2, "roger-tanimoto.csv")
     
     rm(result1, result2)
     
@@ -795,7 +795,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     # 55. Russel Rao
     # retornou valores positivos
     result1 = compute.measure(Fun = russel.rao.e.1, a = m.a, b = m.b, c = m.c, d = m.d)
-    write.csv(result1, "russel-rao-1.csv")
+    write.csv(result1, "russel-rao.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[55], russel.rao.e.2)
     write.csv(result2, "russel-rao-2.csv")
@@ -809,7 +809,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "shape-difference-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[56], shape.differnece.e.2)
-    write.csv(result2, "shape-difference-2.csv")
+    write.csv(result2, "shape-difference.csv")
     
     rm(result1, result2)
     
@@ -821,7 +821,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "simpson-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[57], simpson.e.2)
-    write.csv(result2, "simpson-2.csv")
+    write.csv(result2, "simpson.csv")
     
     rm(result1, result2)
     
@@ -832,7 +832,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "size-difference-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[58], size.difference.e.2)
-    write.csv(result2, "size-difference-2.csv")
+    write.csv(result2, "size-difference.csv")
     
     rm(result1, result2)
     
@@ -843,7 +843,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "sokal-michener-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[59], sokal.michener.e.2)
-    write.csv(result2, "sokal-michener-2.csv")
+    write.csv(result2, "sokal-michener.csv")
     
     rm(result1, result2)
     
@@ -854,7 +854,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "sokal-sneath-1-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[60], sokal.sneath.1.e.2)
-    write.csv(result2, "sokal-sneath-1-2.csv")
+    write.csv(result2, "sokal-sneath-1.csv")
     
     rm(result1, result2)
     
@@ -865,7 +865,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "sokal-sneath-2-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[61], sokal.sneath.2.e.2)
-    write.csv(result2, "sokal-sneath-2-2.csv")
+    write.csv(result2, "sokal-sneath-2.csv")
     
     rm(result1, result2)
     
@@ -876,7 +876,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "sokal-sneath-3-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[62], sokal.sneath.3.e.2)
-    write.csv(result2, "sokal-sneath-3-2.csv")
+    write.csv(result2, "sokal-sneath-3.csv")
     
     rm(result1, result2)
     
@@ -887,7 +887,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "sokal-sneath-4-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[63], sokal.sneath.4.e.2)
-    write.csv(result2, "sokal-sneath-4-2.csv")
+    write.csv(result2, "sokal-sneath-4.csv")
     
     rm(result1, result2)
     
@@ -898,7 +898,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "sokal-sneath-5-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[64], sokal.sneath.5.e.2)
-    write.csv(result2, "sokal-sneath-5-2.csv")
+    write.csv(result2, "sokal-sneath-5.csv")
     
     rm(result1, result2)
     
@@ -909,7 +909,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "songerfrei-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[65], sorgenfrei.e.2)
-    write.csv(result2, "songerfrei-2.csv")
+    write.csv(result2, "songerfrei.csv")
     
     rm(result1, result2)
     
@@ -920,7 +920,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "square-euclidean-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[66], square.euclidean.e.2)
-    write.csv(result2, "square-euclidean-2.csv")
+    write.csv(result2, "square-euclidean.csv")
     
     rm(result1, result2)
     
@@ -931,7 +931,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "stiles-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[67], stiles.e.2)
-    write.csv(result2, "stiles-2.csv")
+    write.csv(result2, "stiles.csv")
     
     rm(result1, result2)
     
@@ -942,7 +942,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "tanimoto-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[68], tanimoto.e.2)
-    write.csv(result2, "tanimoto-2.csv")
+    write.csv(result2, "tanimoto.csv")
     
     rm(result1, result2)
     
@@ -953,7 +953,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "tarantula-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[69], tarantula.e.2)
-    write.csv(result2, "tarantula-2.csv")
+    write.csv(result2, "tarantula.csv")
     
     rm(result1, result2)
     
@@ -964,7 +964,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "tarwid-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[70], tarwid.e.2)
-    write.csv(result2, "tarwid-2.csv")
+    write.csv(result2, "tarwid.csv")
     
     rm(result1, result2)
     
@@ -975,7 +975,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "three-w-jaccard-2.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[71], three.w.jaccard.e.2)
-    write.csv(result2, "three-w-jaccard-2.csv")
+    write.csv(result2, "three-w-jaccard.csv")
     
     rm(result1, result2)
     
@@ -986,7 +986,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "vari-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[72], vari.e.2)
-    write.csv(result2, "vari-2.csv")
+    write.csv(result2, "vari.csv")
     
     rm(result1, result2)
     
@@ -997,7 +997,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "yule-w-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[73], yule.w.e.2)
-    write.csv(result2, "yule-w-2.csv")
+    write.csv(result2, "yule-w.csv")
     
     rm(result1, result2)
     
@@ -1008,7 +1008,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "yuleq-1-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[74], yuleq.1.e.2)
-    write.csv(result2, "yuleq-1-2.csv")
+    write.csv(result2, "yuleq-1.csv")
     
     rm(result1, result2)
     
@@ -1019,7 +1019,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result1, "yuleq-2-1.csv")
     
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, m.n, funs[75], yuleq.2.e.2)
-    write.csv(result2, "yuleq-2-2.csv")
+    write.csv(result2, "yuleq-2.csv")
     
     rm(result1, result2)
     
