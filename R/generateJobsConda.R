@@ -49,7 +49,7 @@ n = nrow(datasets)
     dataset = datasets[i,]
     cat("\n\tDataset:", dataset$Name)
     
-    nome = paste(FolderJob, "/", dataset$Name, ".sh", sep="")
+    nome = paste(FolderJob, "/", "mlsm-", dataset$Name, ".sh", sep="")
     output.file <- file(nome, "wb")
     
     write("#!/bin/bash", file = output.file)

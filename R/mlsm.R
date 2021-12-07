@@ -1,10 +1,3 @@
-cat("\n\n################################################################################################")
-cat("\n# START                                                                                           #")
-cat("\n##################################################################################################\n\n") 
-
-rm(list=ls())
-
-
 ##################################################################################################
 # MultiLabel Similarities Measures
 # Copyright (C) 2021                                                                             #
@@ -23,6 +16,8 @@ rm(list=ls())
 # Bioinformatics and Machine Learning Group (BIOMAL: http://www.biomal.ufscar.br/)               #
 #                                                                                                #
 ##################################################################################################
+
+rm(list=ls())
 
 ##################################################################################################
 # Configures the workspace according to the operating system                                     #
@@ -105,12 +100,12 @@ cat("\nMLSM: nome \t ", dataset_name)
 
 ##################################################################################################
 # DON'T RUN -- it's only for test the code
-# ds <- datasets[29,]
-# dataset_name = ds$Name
-# number_dataset = ds$Id
-# number_cores = 10             
-# number_folds = 10
-# FolderResults = "/dev/shm/teste"
+ ds <- datasets[29,]
+ dataset_name = ds$Name
+ number_dataset = ds$Id
+ number_cores = 10             
+ number_folds = 10
+ FolderResults = "/dev/shm/teste"
 ########################                                                                                                                                                                                                                                ##########################################################################
 
 
@@ -148,43 +143,43 @@ folder = diretorios(dataset_name, FolderResults)
 
 
 ##################################################################################################
-# cat("\nCopy FROM google drive \n")
-# destino = folder$FolderDS
-# origem = paste("cloud:Datasets/CrossValidation_WithValidation/", dataset_name, sep="")
-# comando = paste("rclone -v copy ", origem, " ", destino, sep="")
-# cat("\n", comando, "\n") 
-# a = print(system(comando))
-# a = as.numeric(a)
-# if(a != 0) {
-#   stop("Erro RCLONE")
-#   quit("yes")
-# }
+cat("\nCopy FROM google drive \n")
+destino = folder$FolderDS
+origem = paste("cloud:Datasets/CrossValidation_WithValidation/", dataset_name, sep="")
+comando = paste("rclone -v copy ", origem, " ", destino, sep="")
+cat("\n", comando, "\n") 
+a = print(system(comando))
+a = as.numeric(a)
+if(a != 0) {
+  stop("Erro RCLONE")
+  quit("yes")
+}
  
 ##################################################################################################
-# cat("\nCopy FROM google drive \n")
-# destino = folder$FolderDS
-# origem = paste("cloud:Datasets/Originais/", dataset_name, ".arff", sep="")
-# comando = paste("rclone -v copy ", origem, " ", destino, sep="")
-# cat("\n", comando, "\n") 
-# a = print(system(comando))
-# a = as.numeric(a)
-# if(a != 0) {
-# stop("Erro RCLONE")
-# quit("yes")
-# }
+cat("\nCopy FROM google drive \n")
+destino = folder$FolderDS
+origem = paste("cloud:Datasets/Originais/", dataset_name, ".arff", sep="")
+comando = paste("rclone -v copy ", origem, " ", destino, sep="")
+cat("\n", comando, "\n") 
+a = print(system(comando))
+a = as.numeric(a)
+if(a != 0) {
+ stop("Erro RCLONE")
+ quit("yes")
+}
  
 ##################################################################################################
-# cat("\nCopy FROM google drive \n")
-# destino = folder$FolderDS
-# origem = paste("cloud:Datasets/Originais/", dataset_name, ".xml", sep="")
-# comando = paste("rclone -v copy ", origem, " ", destino, sep="")
-# cat("\n", comando, "\n") 
-# a = print(system(comando))
-# a = as.numeric(a)
-# if(a != 0) {
-# stop("Erro RCLONE")
-#  quit("yes")
-# }
+cat("\nCopy FROM google drive \n")
+destino = folder$FolderDS
+origem = paste("cloud:Datasets/Originais/", dataset_name, ".xml", sep="")
+comando = paste("rclone -v copy ", origem, " ", destino, sep="")
+cat("\n", comando, "\n") 
+a = print(system(comando))
+a = as.numeric(a)
+if(a != 0) {
+ stop("Erro RCLONE")
+ quit("yes")
+}
 
 
 ##################################################################################################
@@ -204,41 +199,37 @@ if(number_folds==1){
 }
  
 ###################################################################################################
-# cat("\nCopy to google drive \n")
-# origem = folder$FolderRD
-# destino = paste("cloud:[2021]ResultadosExperimentos/Similarities/", dataset_name, sep="")
-# comando = paste("rclone -v copy ", origem, " ", destino, sep="")
-# cat("\n", comando, "\n") 
-# a = print(system(comando))
-# a = as.numeric(a)
-# if(a != 0) {
-#   stop("Erro RCLONE")
-#   quit("yes")
-# }
+cat("\nCopy to google drive \n")
+origem = folder$FolderRD
+destino = paste("cloud:[2021]ResultadosExperimentos/Similarities/", dataset_name, sep="")
+comando = paste("rclone -v copy ", origem, " ", destino, sep="")
+cat("\n", comando, "\n") 
+a = print(system(comando))
+a = as.numeric(a)
+if(a != 0) {
+  stop("Erro RCLONE")
+  quit("yes")
+}
 
 
 ##################################################################################################
-# delete all and clean                                                                           #
+# del                                                                                      #
 ##################################################################################################
-cat("\nDelete folder \n")
-str5 = paste("rm -r ", folder$FolderResults, sep="")
-print(system(str5))
+#cat("\nDelete folder \n")
+#str5 = paste("rm -r ", folder$FolderResults, sep="")
+#print(system(str5))
 
-cat("\nDelete folder \n")
-str5 = paste("rm -r ", FolderRoot, "/datasets/", dataset_name, sep="")
-print(system(str5))
+#cat("\nDelete folder \n")
+#str5 = paste("rm -r ", FolderRoot, "/datasets/", dataset_name, sep="")
+#print(system(str5))
 
-cat("\nDelete folder \n")
-str5 = paste("rm -r ", folder$FolderRD, sep="")
-print(system(str5))
+#cat("\nDelete folder \n")
+#str5 = paste("rm -r ", folder$FolderRD, sep="")
+#print(system(str5))
 
 gc()
 
 rm(list=ls())
-
-cat("\n\n################################################################################################")
-cat("\n# END                                                                                            #")
-cat("\n##################################################################################################\n\n") 
 
 ##################################################################################################
 # Please, any errors, contact us: elainececiliagatto@gmail.com                                   #

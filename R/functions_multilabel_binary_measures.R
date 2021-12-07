@@ -330,7 +330,7 @@ get.probabilities <- function(classes,i,j){
 
 # Compute class totals and class probabilities
 # -------------------------------------------------------------------------------------------------
-computeInitialClassProbabilitiesTotals <- function(classes, num.labels){
+computeInitialClassProbabilitiesTotals <- function(classes, num.labels, names_labels){
 
   result <- list()
   num.classes <- ncol(classes) # number of initial classes. 
@@ -356,10 +356,10 @@ computeInitialClassProbabilitiesTotals <- function(classes, num.labels){
   }
   
   #cat("\n Name class totals and class probabilities columns and rows")
-  rownames(class.probabilities) <- paste("Class",c(1:ncol(classes)),sep="")
-  colnames(class.probabilities) <- paste("Class",c(1:ncol(classes)),sep="")
-  rownames(class.totals) <- paste("Class",c(1:ncol(classes)),sep="")
-  colnames(class.totals) <- paste("Class",c(1:ncol(classes)),sep="")
+  rownames(class.probabilities) <- names_labels
+  colnames(class.probabilities) <- names_labels
+  rownames(class.totals) <- names_labels
+  colnames(class.totals) <- names_labels
   
   result$class.totals <- class.totals
   result$class.probabilities <- class.probabilities

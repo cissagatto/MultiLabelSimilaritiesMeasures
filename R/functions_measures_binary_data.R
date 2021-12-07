@@ -42,11 +42,19 @@ FolderScripts = paste(FolderRoot, "/R", sep="")
 #' @param c
 #' @param d
 ample.e.1 <- function(l){
-  return(abs((l$a*(l$c+l$d))/(l$c*(l$a+l$b))))
+  d1 = l$a*(l$c+l$d)
+  d2 = l$c*(l$a+l$b)
+  d3 = d1/d2
+  d4 = abs(d3)
+  return(d4)
 } 
 
 ample.e.2 <- function(a,b,c,d,n){
-  return(abs((a*(c+d))/(c*(a+b))))
+  d1 = a*(c+d)
+  d2 = c*(a+b)
+  d3 = d1/d2
+  d4 = abs(d3)
+  return(d4)
 } 
 
 ###############################################################################
@@ -83,11 +91,17 @@ anderberg.e.2 <- function(a,b,c,d,n){
 #' @param c
 #' @param d
 baroni.urbani.buser.1.e.1 <- function(l){
-  return((sqrt((l$a*l$d)) + l$a)/((sqrt((l$a*l$d))) + l$a + l$b + l$c))
+  d1 = sqrt(l$a*l$d) + l$a
+  d2 = sqrt(l$a*l$d) + a + l$b + l$c
+  d3 = d1/d2
+  return(d3)
 }
 
 baroni.urbani.buser.1.e.2 <- function(a,b,c,d,n){
-  return((sqrt((a*d)) + a)/((sqrt((a*d))) + a + b + c))
+  d1 = sqrt(a*d) + a
+  d2 = sqrt(a*d) + a + b + c
+  d3 = d1/d2
+  return(d3)
 }
 
 ###############################################################################
@@ -100,11 +114,17 @@ baroni.urbani.buser.1.e.2 <- function(a,b,c,d,n){
 #' @param c
 #' @param d
 baroni.urbani.buser.2.e.1 <- function(l){
-  return((sqrt((l$a*l$d))+l$a-(l$b+l$c))/((sqrt((l$a*l$d))) + l$a + l$b + l$c))
+  d1 = srqt(l$a*l$d) + l$a - (l$b+l$c)
+  d2 = sqrt(l$a*l$d) + l$a + l$b + l$c
+  d3 = d1/d2
+  return(d3)
 }
 
 baroni.urbani.buser.2.e.2 <- function(a,b,c,d,n){
-  return((sqrt((a*d))+a-(b+c))/((sqrt((a*d))) + a + b + c))
+  d1 = srqt(a*d) + a - (b+c)
+  d2 = sqrt(a*d) + a + b + c
+  d3 = d1/d2
+  return(d3)
 }
 
 ###############################################################################
@@ -196,18 +216,20 @@ cityblock.e.2 <- function(a,b,c,d,n){
 #' @param d
 cole.e.1 <- function(l){
   d1 = sqrt(2) * ((l$a*l$d)-(l$b*l$c))
-  d2 = (((l$a*l$d)-(l$b*l$c))^2) - ((l$a+l$b)*(l$a+l$c)*(l$b+l$d)*(l$c+l$d))
-  d3 = sqrt(d2)
-  d4 = d1/d3
-  return(d4)
+  d2 = (((l$a*l$d)-(l$b*l$c))^2)
+  d3 = ((l$a+l$b)*(l$a+l$c)*(l$b+l$d)*(l$c+l$d))
+  d4 = d2 - d3
+  d5 = sqrt(d4)
+  return(d5)
 }
 
 cole.e.2 <- function(a,b,c,d,n){
   d1 = sqrt(2) * ((a*d)-(b*c))
-  d2 = (((a*d)-(b*c))^2) - ((a+b)*(a+c)*(b+d)*(c+d))
-  d3 = sqrt(d2)
-  d4 = d1/d3
-  return(d4)
+  d2 = (((a*d)-(b*c))^2)
+  d3 = ((a+b)*(a+c)*(b+d)*(c+d))
+  d4 = d2 - d3
+  d5 = sqrt(d4)
+  return(d5)
 }
 
 ##############################################################################
@@ -635,11 +657,11 @@ kulczynski.1.e.2 <- function(a,b,c,d,n){
 #' @param b
 #' @param c
 kulczynski.2.e.1 <- function(l){
-  return((l$a/2) * ((2*l$a)+l$b+l$c))/(l$a+l$b)*(l$a+l$c)
+  return((l$a/2) * ((2*l$a)+l$b+l$c)) / (l$a+l$b)*(l$a+l$c)
 }
 
 kulczynski.2.e.2 <- function(a,b,c,d,n){
-  return((a/2) * ((2*a)+b+c))/(a+b)*(a+c)
+  return((a/2) * ((2*a)+b+c)) / (a+b)*(a+c)
 }
 
 ##############################################################################
@@ -771,6 +793,24 @@ nei.li.e.2 <- function(a,b,c,d,n){
 }
 
 ##############################################################################
+# Ochiai 1  ---------------------------------------------------------------
+#' Similaritie Measure for categorial data
+#'
+#' @family Multi_Label_Binary_Measures
+#' @param a
+#' @param b
+#' @param c
+#' @param d
+ochiai.1.e.1 <- function(l){
+  return(l$a/sqrt((l$a+l$b)*(l$a+l$c)))
+}
+
+ochiai.1.e.2 <- function(a,b,c,d,n){
+  return(a/sqrt((a+b)*(a+c)))
+}
+
+
+##############################################################################
 # Ochiai 2  ---------------------------------------------------------------
 #' Similaritie Measure for categorial data
 #'
@@ -890,11 +930,19 @@ pearson.3.e.2 <- function(a,b,c,d,n){
 #' @param c
 #' @param d
 pearson.heron.1.e.1 <- function(l){
-  return((l$a*l$d)-(l$b*l$c)/(l$a+l$b)*(l$a+l$c)*(l$b+l$d)*(l$c+l$d))
+  d1 = (l$a*l$d) - (l$b*l$c)
+  d2 = (l$a+l$b) * (l$a+l$c) * (l$b+l$d) * (l$c+l$d)
+  d3 = sqrt(d2)
+  d4 = d1/d2
+  return(d4)
 }
 
 pearson.heron.1.e.2 <- function(a,b,c,d,n){
-  return((a*d)-(b*c)/(a+b)*(a+c)*(b+d)*(c+d))
+  d1 = (a*d) - (b*c)
+  d2 = (a+b) * (a+c) * (b+d) * (c+d)
+  d3 = sqrt(d2)
+  d4 = d1/d2
+  return(d4)
 }
 
 
@@ -908,11 +956,19 @@ pearson.heron.1.e.2 <- function(a,b,c,d,n){
 #' @param c
 #' @param d
 pearson.heron.2.e.1 <- function(l){
-  return(cos(pi*(sqrt(l$b*l$c))/sqrt(l$a*l$d)+sqrt(l$b*l$c)))
+  d1 = pi * sqrt(l$b*l$c)
+  d2  = sqrt(l$a*l$d) + sqrt(l$b*l$c)
+  d3 = d1/d2
+  d4 = cos(d3)
+  return(d4)
 }
 
 pearson.heron.2.e.2 <- function(a,b,c,d,n){
-  return(cos(pi*(sqrt(b*c))/sqrt(a*d)+sqrt(b*c)))
+  d1 = pi * sqrt(b*c)
+  d2  = sqrt(a*d) + sqrt(b*c)
+  d3 = d1/d2
+  d4 = cos(d3)
+  return(d4)
 }
 
 ##############################################################################
@@ -976,11 +1032,11 @@ russel.rao.e.2 <- function(a,b,c,d,n){
 #' @param c
 #' @param d
 #' @param n
-shape.differnece.e.1 <- function(l){
+shape.difference.e.1 <- function(l){
   return((l$n*(l$b+l$c)-((l$b-l$c)^2))/((l$a+l$b+l$c+l$d)^2))
 }
 
-shape.differnece.e.2 <- function(a,b,c,d,n){
+shape.difference.e.2 <- function(a,b,c,d,n){
   return((n*(b+c)-((b-c)^2))/((a+b+c+d)^2))
 }
 
@@ -1419,6 +1475,7 @@ getNamesListFunctions <- function(){
                    "minowski.e ",
                    "mountford.e ",
                    "nei.li.e",
+                   "ochiai.1.e",
                    "ochiai.2.e",
                    "otsuka.e",
                    "pattern.difference.e",
