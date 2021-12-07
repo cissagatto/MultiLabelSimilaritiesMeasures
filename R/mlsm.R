@@ -100,12 +100,12 @@ cat("\nMLSM: nome \t ", dataset_name)
 
 ##################################################################################################
 # DON'T RUN -- it's only for test the code
- ds <- datasets[29,]
- dataset_name = ds$Name
- number_dataset = ds$Id
- number_cores = 10             
- number_folds = 10
- FolderResults = "/dev/shm/teste"
+# ds <- datasets[29,]
+# dataset_name = ds$Name
+# number_dataset = ds$Id
+# number_cores = 10             
+# number_folds = 10
+# FolderResults = "/dev/shm/teste"
 ########################                                                                                                                                                                                                                                ##########################################################################
 
 
@@ -143,50 +143,49 @@ folder = diretorios(dataset_name, FolderResults)
 
 
 ##################################################################################################
-cat("\nCopy FROM google drive \n")
-destino = folder$FolderDS
-origem = paste("cloud:Datasets/CrossValidation_WithValidation/", dataset_name, sep="")
-comando = paste("rclone -v copy ", origem, " ", destino, sep="")
-cat("\n", comando, "\n") 
-a = print(system(comando))
-a = as.numeric(a)
-if(a != 0) {
-  stop("Erro RCLONE")
-  quit("yes")
-}
+# cat("\nCopy FROM google drive \n")
+# destino = folder$FolderDS
+# origem = paste("cloud:Datasets/CrossValidation_WithValidation/", dataset_name, sep="")
+# comando = paste("rclone -v copy ", origem, " ", destino, sep="")
+# cat("\n", comando, "\n") 
+# a = print(system(comando))
+# a = as.numeric(a)
+# if(a != 0) {
+#   stop("Erro RCLONE")
+#   quit("yes")
+# }
  
 ##################################################################################################
-cat("\nCopy FROM google drive \n")
-destino = folder$FolderDS
-origem = paste("cloud:Datasets/Originais/", dataset_name, ".arff", sep="")
-comando = paste("rclone -v copy ", origem, " ", destino, sep="")
-cat("\n", comando, "\n") 
-a = print(system(comando))
-a = as.numeric(a)
-if(a != 0) {
- stop("Erro RCLONE")
- quit("yes")
-}
+# cat("\nCopy FROM google drive \n")
+# destino = folder$FolderDS
+# origem = paste("cloud:Datasets/Originais/", dataset_name, ".arff", sep="")
+# comando = paste("rclone -v copy ", origem, " ", destino, sep="")
+# cat("\n", comando, "\n") 
+# a = print(system(comando))
+# a = as.numeric(a)
+# if(a != 0) {
+# stop("Erro RCLONE")
+# quit("yes")
+# }
  
 ##################################################################################################
-cat("\nCopy FROM google drive \n")
-destino = folder$FolderDS
-origem = paste("cloud:Datasets/Originais/", dataset_name, ".xml", sep="")
-comando = paste("rclone -v copy ", origem, " ", destino, sep="")
-cat("\n", comando, "\n") 
-a = print(system(comando))
-a = as.numeric(a)
-if(a != 0) {
- stop("Erro RCLONE")
- quit("yes")
-}
+# cat("\nCopy FROM google drive \n")
+# destino = folder$FolderDS
+# origem = paste("cloud:Datasets/Originais/", dataset_name, ".xml", sep="")
+# comando = paste("rclone -v copy ", origem, " ", destino, sep="")
+# cat("\n", comando, "\n") 
+# a = print(system(comando))
+# a = as.numeric(a)
+# if(a != 0) {
+#  stop("Erro RCLONE")
+#  quit("yes")
+# }
 
 
 ##################################################################################################
 # execute the code and get the total execution time                                              #
 # n_dataset, number_cores, number_folds                                                          #
 ##################################################################################################
-
 if(number_folds==1){
   cat("\nExecute MLSM without Cross Validation \n")
   timeFinal <- system.time(results <- executeMLSM_NCV(number_dataset, FolderResults))
@@ -199,17 +198,17 @@ if(number_folds==1){
 }
  
 ###################################################################################################
-cat("\nCopy to google drive \n")
-origem = folder$FolderRD
-destino = paste("cloud:[2021]ResultadosExperimentos/Similarities/", dataset_name, sep="")
-comando = paste("rclone -v copy ", origem, " ", destino, sep="")
-cat("\n", comando, "\n") 
-a = print(system(comando))
-a = as.numeric(a)
-if(a != 0) {
-  stop("Erro RCLONE")
-  quit("yes")
-}
+# cat("\nCopy to google drive \n")
+# origem = folder$FolderRD
+# destino = paste("cloud:[2021]ResultadosExperimentos/Similarities/", dataset_name, sep="")
+# comando = paste("rclone -v copy ", origem, " ", destino, sep="")
+# cat("\n", comando, "\n") 
+# a = print(system(comando))
+# a = as.numeric(a)
+# if(a != 0) {
+#   stop("Erro RCLONE")
+#   quit("yes")
+# }
 
 
 ##################################################################################################
