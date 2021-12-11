@@ -48,7 +48,7 @@ options(scipen = 10)
 # Read the dataset file with the information for each dataset                                    #
 ##################################################################################################
 setwd(FolderRoot)
-datasets <- data.frame(read.csv("datasets.csv"))
+datasets <- data.frame(read.csv("datasets-2022.csv"))
 
 
 ##################################################################################################
@@ -91,7 +91,7 @@ FolderResults  <- toString(args[4])
 cat("\nMLSM: folder \t ", FolderResults)
 
 
-##################                                                                                                                                                                                ################################################################################
+##################################################################################################
 # Get dataset name                                                                               #
 ##################################################################################################
 dataset_name  <- toString(ds$Name) 
@@ -100,13 +100,13 @@ cat("\nMLSM: nome \t ", dataset_name)
 
 ##################################################################################################
 # DON'T RUN -- it's only for test the code
-# ds <- datasets[29,]
-# dataset_name = ds$Name
-# number_dataset = ds$Id
-# number_cores = 10             
-# number_folds = 10
-# FolderResults = "/dev/shm/teste"
-########################                                                                                                                                                                                                                                ##########################################################################
+ ds <- datasets[23,]
+ dataset_name = ds$Name
+ number_dataset = ds$Id
+ number_cores = 10             
+ number_folds = 10
+ FolderResults = "/dev/shm/teste"
+##################################################################################################
 
 
 ##################################################################################################
@@ -119,7 +119,7 @@ if(dir.exists(FolderResults)==FALSE){
 
 
 ##################################################################################################
-# LOAD RUN.R                                                                                     #
+# LOAD SOURCES                                                                                     #
 ##################################################################################################
 setwd(FolderScripts)
 source("runCV.R") 
@@ -143,88 +143,91 @@ folder = diretorios(dataset_name, FolderResults)
 
 
 ##################################################################################################
-# cat("\nCopy FROM google drive \n")
-# destino = folder$FolderDS
-# origem = paste("cloud:Datasets/CrossValidation_WithValidation/", dataset_name, sep="")
-# comando = paste("rclone -v copy ", origem, " ", destino, sep="")
-# cat("\n", comando, "\n") 
-# a = print(system(comando))
-# a = as.numeric(a)
-# if(a != 0) {
-#   stop("Erro RCLONE")
-#   quit("yes")
-# }
+cat("\nCopy FROM google drive \n")
+destino = folder$FolderDS
+origem = paste("cloud:Datasets/CrossValidation_WithValidation/", dataset_name, sep="")
+comando = paste("rclone -v copy ", origem, " ", destino, sep="")
+cat("\n", comando, "\n") 
+a = print(system(comando))
+a = as.numeric(a)
+if(a != 0) {
+  stop("Erro RCLONE")
+  quit("yes")
+}
  
 ##################################################################################################
-# cat("\nCopy FROM google drive \n")
-# destino = folder$FolderDS
-# origem = paste("cloud:Datasets/Originais/", dataset_name, ".arff", sep="")
-# comando = paste("rclone -v copy ", origem, " ", destino, sep="")
-# cat("\n", comando, "\n") 
-# a = print(system(comando))
-# a = as.numeric(a)
-# if(a != 0) {
-# stop("Erro RCLONE")
-# quit("yes")
-# }
+cat("\nCopy FROM google drive \n")
+destino = folder$FolderDS
+origem = paste("cloud:Datasets/Originais/", dataset_name, ".arff", sep="")
+comando = paste("rclone -v copy ", origem, " ", destino, sep="")
+cat("\n", comando, "\n") 
+a = print(system(comando))
+a = as.numeric(a)
+if(a != 0) {
+ stop("Erro RCLONE")
+ quit("yes")
+}
  
 ##################################################################################################
-# cat("\nCopy FROM google drive \n")
-# destino = folder$FolderDS
-# origem = paste("cloud:Datasets/Originais/", dataset_name, ".xml", sep="")
-# comando = paste("rclone -v copy ", origem, " ", destino, sep="")
-# cat("\n", comando, "\n") 
-# a = print(system(comando))
-# a = as.numeric(a)
-# if(a != 0) {
-#  stop("Erro RCLONE")
-#  quit("yes")
-# }
+cat("\nCopy FROM google drive \n")
+destino = folder$FolderDS
+origem = paste("cloud:Datasets/Originais/", dataset_name, ".xml", sep="")
+comando = paste("rclone -v copy ", origem, " ", destino, sep="")
+cat("\n", comando, "\n") 
+a = print(system(comando))
+a = as.numeric(a)
+if(a != 0) {
+ stop("Erro RCLONE")
+ quit("yes")
+}
 
 
 ##################################################################################################
 # execute the code and get the total execution time                                              #
 # n_dataset, number_cores, number_folds                                                          #
 ##################################################################################################
+
 if(number_folds==1){
   cat("\nExecute MLSM without Cross Validation \n")
   timeFinal <- system.time(results <- executeMLSM_NCV(number_dataset, FolderResults))
   print(timeFinal)
   
 } else {
-  cat("\nExecute MLSM with Cross Validation (number fold > 1) \n")
+  cat("\nExecute MLSM with Cross Validation (number folds > 1) \n")
   timeFinal <- system.time(results <- executeMLSM_CV(ds, number_dataset, number_cores, number_folds, FolderResults))
   print(timeFinal)
 }
+
+
  
 ###################################################################################################
-# cat("\nCopy to google drive \n")
-# origem = folder$FolderRD
-# destino = paste("cloud:[2021]ResultadosExperimentos/Similarities/", dataset_name, sep="")
-# comando = paste("rclone -v copy ", origem, " ", destino, sep="")
-# cat("\n", comando, "\n") 
-# a = print(system(comando))
-# a = as.numeric(a)
-# if(a != 0) {
-#   stop("Erro RCLONE")
-#   quit("yes")
-# }
+cat("\nCopy to google drive \n")
+origem = folder$FolderRD
+destino = paste("cloud:[2022]ResultadosExperimentos/Similaridades/", dataset_name, sep="")
+comando = paste("rclone -v copy ", origem, " ", destino, sep="")
+cat("\n", comando, "\n") 
+a = print(system(comando))
+a = as.numeric(a)
+if(a != 0) {
+  stop("Erro RCLONE")
+  quit("yes")
+}
 
 
 ##################################################################################################
 # del                                                                                      #
 ##################################################################################################
-#cat("\nDelete folder \n")
-#str5 = paste("rm -r ", folder$FolderResults, sep="")
-#print(system(str5))
+cat("\nDelete folder \n")
+str5 = paste("rm -r ", folder$FolderResults, sep="")
+print(system(str5))
 
-#cat("\nDelete folder \n")
-#str5 = paste("rm -r ", FolderRoot, "/datasets/", dataset_name, sep="")
-#print(system(str5))
+cat("\nDelete folder \n")
+str5 = paste("rm -r ", FolderRoot, "/datasets/", dataset_name, sep="")
+print(system(str5))
 
-#cat("\nDelete folder \n")
-#str5 = paste("rm -r ", folder$FolderRD, sep="")
-#print(system(str5))
+cat("\nDelete folder \n")
+str5 = paste("rm -r ", folder$FolderRD, sep="")
+print(system(str5))
 
 gc()
 

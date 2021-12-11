@@ -95,12 +95,21 @@ compute.n <- function(a,b,c,d){
 }
 
 
-# Na teoria da probabilidade, duas variáveis binárias são chamadas de não correlacionadas 
-# se elas  compartilha covariância zero, ou seja, ad - bc = 0 
+# Na teoria da probabilidade, duas variáveis binárias são chamadas 
+# de não correlacionadas se elas  compartilha covariância zero, 
+# ou seja, ad - bc = 0 
 # returns 0 if (ad - bc) != 0
 # returns 1 if (ad - bc) == 0
 covariance <- function(x,y){
   return((x-y)==0)
+}
+
+# Duas variáveis binárias satisfazem a independência estatística se
+# ad / bc = 1
+# returns 0 if (ad / bc) != 1
+# returns 1 if (ad / bc) == 1
+independence <- function(x,y){
+  return((x/y)==1)
 }
 
 

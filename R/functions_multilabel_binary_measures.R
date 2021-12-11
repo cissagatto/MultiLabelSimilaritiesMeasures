@@ -17,6 +17,8 @@
 #                                                                                                #
 ##################################################################################################
 
+
+
 ##################################################################################################
 # Configures the workspace according to the operating system                                     #
 ##################################################################################################
@@ -32,8 +34,9 @@ if (sistema[1] == "Linux"){
 setwd(FolderRoot)
 FolderScripts = paste(FolderRoot, "/R", sep="")
 
-##################################################################################################
 
+
+##################################################################################################
 # BUILD CORRELATION MATRIX ----------------------------------------------------------------
 #' Measures for categorial data
 #'
@@ -55,6 +58,8 @@ build.matrix.corr <- function(num.labels, labels){
   gc()
 }
 
+
+##################################################################################################
 # CONTINGENCY TABLE ----------------------------------------------------------------
 #' Measures for categorial data
 #'
@@ -115,6 +120,8 @@ compute.cont.table <- function(labels, num.labels){
   gc()
 }
 
+
+##################################################################################################
 # COMPUTE MARGINAL PROBABILITIES ----------------------------------------------------------------
 #' Measures for categorial data
 #'
@@ -208,6 +215,8 @@ compute.marg.probs <- function(labels, num.labels, a, b, c, d){
   gc()
 }
 
+
+##################################################################################################
 # COVARIANCE ----------------------------------------------------------------
 #' Measures for categorial data
 #'
@@ -241,6 +250,68 @@ compute.covar <- function(labels, num.labels, ad, bc){
   return(mco)
   gc()
 }
+
+
+################################################################################
+#' Compute statistical independence ----------------------------------------------------------------
+#'
+#' @family Multi_Label_Binary_Measures
+#' @param  classes
+#' @param  i
+#' @param  j
+#' @return values for all measures
+#' @references
+#'  
+#' @export
+#'
+#' @examples
+#' 
+compute.indep <- function(labels, num.labels, ad, bc){
+  
+  mco <- build.matrix.corr(num.labels, labels)
+  u = (num.labels*num.labels)
+  pb <- progress_bar$new(total = u)
+  for (i in 1:num.labels){
+    for (j in 1:num.labels){
+      x = ad[i,j]
+      y = bc[i,j]
+      mco[i,j] = independence(x,y)
+      pb$tick()
+      Sys.sleep(1/u)
+      gc()
+    } # end intern for
+    gc()
+  } # enf extern for  
+  return(mco)
+  gc()
+}
+
+
+################################################################################
+# ALL ----------------------------------------------------------------
+#' Measure for categorial data
+#'
+#' @family Multi_Label_Binary_Measures
+#' @param labels Label Space from dataset
+#' @param num.labels Number labels from Label Space
+#' @param  a
+#' @param  b
+#' @param  c
+#' @param  d
+#' @param  n
+#' @return values for all measures
+#' @references
+#'  
+#' @export
+#'
+#' @examples
+#' 
+compute.measure.1 <- function(Fun, ...) {
+  Args <- list(...)
+  Args <- lapply(Args, function(M) apply(X = M, MARGIN = c(1,2), FUN = as.numeric))
+  Fun(Args)
+}
+
 
 # ALL ----------------------------------------------------------------
 #' Measure for categorial data
@@ -287,18 +358,22 @@ compute.measure.2 <- function(labels, num.labels, a, b, c, d, n, name, FUN){
   gc()
 }
 
-compute.measure <- function(Fun, ...) {
-  Args <- list(...)
-  Args <- lapply(Args, function(M) apply(X = M, MARGIN = c(1,2), FUN = as.numeric))
-  Fun(Args)
-}
-
 
 ################################################################################
-# Compute probabilities p(i) and p(i|j)
-# Also counts total of examples per classes and intersections
-# -------------------------------------------------------------------------------------
-# classes data frame, index of classes
+#' Compute probabilities p(i) and p(i|j)
+#' Also counts total of examples per classes and intersections
+#'
+#' @family Multi_Label_Binary_Measures
+#' @param  classes
+#' @param  i
+#' @param  j
+#' @return values for all measures
+#' @references
+#'  
+#' @export
+#'
+#' @examples
+#' 
 get.probabilities <- function(classes,i,j){
   
   #cat("\n Get Probabilities")
@@ -328,8 +403,20 @@ get.probabilities <- function(classes,i,j){
   return(result)
 }
 
-# Compute class totals and class probabilities
-# -------------------------------------------------------------------------------------------------
+################################################################################
+#' Compute class totals and class probabilities
+#'
+#' @family Multi_Label_Binary_Measures
+#' @param  classes
+#' @param  i
+#' @param  j
+#' @return values for all measures
+#' @references
+#'  
+#' @export
+#'
+#' @examples
+#' 
 computeInitialClassProbabilitiesTotals <- function(classes, num.labels, names_labels){
 
   result <- list()
