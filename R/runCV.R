@@ -439,7 +439,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     
     ################################################################################
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, 
-                                m.n, funs[35], fossum.e.2)
+                                m.n, funs[35], fossum.e)
     result2[which(!is.finite(result2))] <- 0
     write.csv(result2, "fossum.csv")
     rm(result2)
