@@ -104,6 +104,3 @@ This study is financed in part by the Coordenação de Aperfeiçoamento de Pesso
 Please contact me: elainececiliagatto@gmail.com
 
 # Thanks
-
-
-
