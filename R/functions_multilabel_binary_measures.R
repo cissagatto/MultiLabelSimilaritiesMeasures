@@ -1,5 +1,5 @@
 ##################################################################################################
-# MultiLabel Similarities Measures
+# MultiLabel Similarities Measures                                                               #
 # Copyright (C) 2021                                                                             #
 #                                                                                                #
 # This code is free software: you can redistribute it and/or modify it under the terms of the    #
@@ -36,20 +36,15 @@ FolderScripts = paste(FolderRoot, "/R", sep="")
 
 
 
-##################################################################################################
-# BUILD CORRELATION MATRIX ----------------------------------------------------------------
-#' Measures for categorial data
+###############################################################################
+#' Build the correlation matrix
 #'
-#' @family Multi_Label_Binary_Measures
-#' @param labels Label Space from dataset
-#' @param num.labels Number labels from Label Space
+#' @family MultiLabel Binary Measures Functions
+#' @param labels The label space from the dataset
+#' @param num.labels total number of labels from label space
 #' @return correlation matrix num.labels X num.labels
-#' @references
-#'  
-#' @export
-#'
-#' @examples
 #' 
+###############################################################################
 build.matrix.corr <- function(num.labels, labels){
   matrix.corr <- matrix(nrow=num.labels, ncol=num.labels, data=0)
   colnames(matrix.corr) <- colnames(labels)
@@ -59,20 +54,15 @@ build.matrix.corr <- function(num.labels, labels){
 }
 
 
-##################################################################################################
-# CONTINGENCY TABLE ----------------------------------------------------------------
-#' Measures for categorial data
+###############################################################################
+#' Compute contingence table
 #'
-#' @family Multi_Label_Binary_Measures
-#' @param labels Label Space from dataset
-#' @param num.labels Number labels from Label Space
-#' @return contingence table for all labels
-#' @references
-#'  
-#' @export
-#'
-#' @examples
+#' @family MultiLabel Binary Measures Functions
+#' @param labels The label space from the dataset
+#' @param num.labels total number of labels from label space
+#' @return return the contingence table
 #' 
+###############################################################################
 compute.cont.table <- function(labels, num.labels){
   
   retorno = list()
@@ -121,21 +111,19 @@ compute.cont.table <- function(labels, num.labels){
 }
 
 
-##################################################################################################
-# COMPUTE MARGINAL PROBABILITIES ----------------------------------------------------------------
-#' Measures for categorial data
-#'
-#' @family Multi_Label_Binary_Measures
-#' @param labels Label Space from dataset
-#' @param num.labels Number labels from Label Space
-#' @param res A object from function compute.cont.table(labels, num.labels)
-#' @return marginal probabilities for all labels
-#' @references
-#'  
-#' @export
-#'
-#' @examples
+###############################################################################
+#' Compute marginal probabilities
 #' 
+#' @family MultiLabel Binary Measures Functions
+#' @param labels The label space from the dataset
+#' @param num.labels total number of labels from label space
+#' @param  a frequency which label i and label j occur together
+#' @param  b frequency which label i occur alone
+#' @param  c frequency which label j occur alone
+#' @param  d frequency which label i and label j not occur together
+#' @return return the computed marginal probabilities for all labels
+#' 
+###############################################################################
 compute.marg.probs <- function(labels, num.labels, a, b, c, d){
   
   retorno = list()
@@ -216,21 +204,17 @@ compute.marg.probs <- function(labels, num.labels, a, b, c, d){
 }
 
 
-##################################################################################################
-# COVARIANCE ----------------------------------------------------------------
-#' Measures for categorial data
+###############################################################################
+#' Compute covariance
 #'
-#' @family Multi_Label_Binary_Measures
-#' @param labels Label Space from dataset
-#' @param num.labels Number labels from Label Space
-#' @param res A object from function compute.marg.probs(labels, num.labels, res)
+#' @family MultiLabel Binary Measures Functions
+#' @param labels The label space from the dataset
+#' @param num.labels total number of labels from label space
+#' @param ad the values computed for a*d 
+#' @param bc the values computed for b*c
 #' @return covariance for all labels
-#' @references
-#'  
-#' @export
-#'
-#' @examples
 #' 
+###############################################################################
 compute.covar <- function(labels, num.labels, ad, bc){
   
   mco <- build.matrix.corr(num.labels, labels)
@@ -252,20 +236,17 @@ compute.covar <- function(labels, num.labels, ad, bc){
 }
 
 
-################################################################################
-#' Compute statistical independence ----------------------------------------------------------------
-#'
-#' @family Multi_Label_Binary_Measures
-#' @param  classes
-#' @param  i
-#' @param  j
-#' @return values for all measures
-#' @references
-#'  
-#' @export
-#'
-#' @examples
+###############################################################################
+#' Compute statistical independence 
 #' 
+#' @family MultiLabel Binary Measures Functions
+#' @param labels The label space from the dataset
+#' @param num.labels total number of labels from label space
+#' @param ad the values computed for a*d 
+#' @param bc the values computed for b*c
+#' @return Return the computed statistical independence
+#' 
+###############################################################################
 compute.indep <- function(labels, num.labels, ad, bc){
   
   mco <- build.matrix.corr(num.labels, labels)
@@ -287,50 +268,46 @@ compute.indep <- function(labels, num.labels, ad, bc){
 }
 
 
-################################################################################
-# ALL ----------------------------------------------------------------
-#' Measure for categorial data
+
+###############################################################################
+#' Compute all measures for categorial data
 #'
-#' @family Multi_Label_Binary_Measures
-#' @param labels Label Space from dataset
-#' @param num.labels Number labels from Label Space
-#' @param  a
-#' @param  b
-#' @param  c
-#' @param  d
-#' @param  n
-#' @return values for all measures
-#' @references
-#'  
-#' @export
-#'
+#' @family MultiLabel Binary Measures Functions
+#' @param FUN the function
+#' @return values computed for all binary measures
 #' @examples
 #' 
+###############################################################################
 compute.measure.1 <- function(Fun, ...) {
   Args <- list(...)
-  Args <- lapply(Args, function(M) apply(X = M, MARGIN = c(1,2), FUN = as.numeric))
+  Args <- lapply(Args, function(M) apply(X = M, MARGIN = c(1,2), 
+                                         FUN = as.numeric))
   Fun(Args)
 }
 
 
-# ALL ----------------------------------------------------------------
-#' Measure for categorial data
+###############################################################################
+#' Compute all measures for categorial data
 #'
-#' @family Multi_Label_Binary_Measures
-#' @param labels Label Space from dataset
-#' @param num.labels Number labels from Label Space
-#' @param  a
-#' @param  b
-#' @param  c
-#' @param  d
-#' @param  n
-#' @return values for all measures
-#' @references
-#'  
-#' @export
-#'
+#' @family MultiLabel Binary Measures Functions
+#' @param labels  the label space from the dataset
+#' @param num.labels total number of labels from label space
+#' @param  a frequency which label i and label j occur together
+#' @param  b frequency which label i occur alone
+#' @param  c frequency which label j occur alone
+#' @param  d frequency which label i and label j not occur together
+#' @param  n n = a + b + c + d
+#' @param name the name of the function
+#' @param FUN the function
+#' @return values computed for all binary measures
 #' @examples
+#' setwd(Folder)
+#' dados = foreign::read.arff(bibtex.arff)
+#' labels = data.frame(dados[,1837:1995])
+#' names_labels = colnames(labels)
+#' result <- compute.measure.2(labels, num.labels, a, b, c, d, n, name, FUN)
 #' 
+###############################################################################
 compute.measure.2 <- function(labels, num.labels, a, b, c, d, n, name, FUN){
   
   retorno = list()
@@ -341,12 +318,12 @@ compute.measure.2 <- function(labels, num.labels, a, b, c, d, n, name, FUN){
   
   for (i in 1:num.labels){
     for (j in 1:num.labels){
-      x = as.numeric(a[i,j])
-      y = as.numeric(b[i,j])
-      w = as.numeric(c[i,j])
-      z = as.numeric(d[i,j])
-      k = as.numeric(n[i,j])
-      m[i,j] = FUN(x,y,w,z,k)
+      x = as.numeric(a[i,j]) # a
+      y = as.numeric(b[i,j]) # b
+      w = as.numeric(c[i,j]) # c
+      z = as.numeric(d[i,j]) # d
+      k = as.numeric(n[i,j]) # n
+      m[i,j] = FUN(x,y,w,z,k) # function
       pb$tick()
       Sys.sleep(1/u)
       gc()
@@ -363,34 +340,32 @@ compute.measure.2 <- function(labels, num.labels, a, b, c, d, n, name, FUN){
 #' Compute probabilities p(i) and p(i|j)
 #' Also counts total of examples per classes and intersections
 #'
-#' @family Multi_Label_Binary_Measures
-#' @param  classes
-#' @param  i
-#' @param  j
-#' @return values for all measures
-#' @references
-#'  
-#' @export
-#'
+#' @family MultiLabel Binary Measures Functions
+#' @param  classes The label space from the dataset
+#' @param  i the class i
+#' @param  j the class j
+#' @return Return the computed probabilities
 #' @examples
+#' setwd(Folder)
+#' dados = foreign::read.arff(bibtex.arff)
+#' labels = data.frame(dados[,1837:1995])
+#' names_labels = colnames(labels)
+#' result <- get.probabilities(labels, num.labels, names_labels)
 #' 
+###############################################################################
 get.probabilities <- function(classes,i,j){
-  
-  #cat("\n Get Probabilities")
   
   result <- list()
   result$prob <- 0
   result$total <- 0
   
   if(i == j){ 
-    #cat("\n Compute p(i)")
     total.i <- length(which(classes[,i]==1))
     total <- nrow(classes)
     result$total <- total.i
     result$prob <- total.i / total
   }
   else{ 
-    #cat("\n Compute p(i|j)")
     total.j <- length(which(classes[,j]==1))
     examples.i <- which(classes[,i]==1)
     examples.j <- which(classes[,j]==1)
@@ -406,32 +381,34 @@ get.probabilities <- function(classes,i,j){
 ################################################################################
 #' Compute class totals and class probabilities
 #'
-#' @family Multi_Label_Binary_Measures
-#' @param  classes
-#' @param  i
-#' @param  j
-#' @return values for all measures
-#' @references
-#'  
+#' @family MultiLabel Binary Measures Functions
+#' @param  classes The label space from the dataset
+#' @param  num.labels The total number of labels
+#' @param  names_labels names of the labels
+#' @return Return the conditional probabilities and total classes per classes
+#' @references  
 #' @export
-#'
 #' @examples
+#' setwd(Folder)
+#' dados = foreign::read.arff(bibtex.arff)
+#' labels = data.frame(dados[,1837:1995])
+#' names_labels = colnames(labels)
+#' result <- computeInitialClassProbabilitiesTotals(labels, num.labels, 
+#' names_labels)
 #' 
-computeInitialClassProbabilitiesTotals <- function(classes, num.labels, names_labels){
+###############################################################################
+computeInitialClassProbabilitiesTotals <- function(classes, num.labels, 
+                                                   names_labels){
 
   result <- list()
   num.classes <- ncol(classes) # number of initial classes. 
   
-  #cat("\n Fill class probabilities matrix and")
-  #cat("\n fill the total counts of examples per class and intersections")
-  
   class.probabilities <- matrix(nrow=num.classes, ncol=num.classes, data=0)
   class.totals <- matrix(nrow=num.classes, ncol=num.classes, data=0)
   
-  u = (num.labels*num.labels) # tamanho da matriz 
-  pb <- progress_bar$new(total = u) # barra de progresso
+  u = (num.labels*num.labels) # lenght matrix
+  pb <- progress_bar$new(total = u) # progress bar
   
-  #cat("\n p(i) or p(i|j) and totals")
   for(i in 1:num.classes){
     for(j in 1:num.classes){
       class.prob.totals <- get.probabilities(classes,i,j)  
@@ -442,7 +419,6 @@ computeInitialClassProbabilitiesTotals <- function(classes, num.labels, names_la
     }
   }
   
-  #cat("\n Name class totals and class probabilities columns and rows")
   rownames(class.probabilities) <- names_labels
   colnames(class.probabilities) <- names_labels
   rownames(class.totals) <- names_labels
@@ -455,6 +431,6 @@ computeInitialClassProbabilitiesTotals <- function(classes, num.labels, names_la
 }
 
 
-################################################################################
-# any errors, please, contact me: elainececiliagatto@gmail.com                 #
-################################################################################
+###############################################################################
+# Please, any errors, please, contact me: elainececiliagatto@gmail.com        #
+###############################################################################

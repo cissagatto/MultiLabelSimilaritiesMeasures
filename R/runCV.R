@@ -1,5 +1,5 @@
 ##################################################################################################
-# MultiLabel Similarities Measures
+# MultiLabel Similarities Measures                                                               #
 # Copyright (C) 2021                                                                             #
 #                                                                                                #
 # This code is free software: you can redistribute it and/or modify it under the terms of the    #
@@ -32,8 +32,19 @@ if (sistema[1] == "Linux") {
 setwd(FolderRoot)
 FolderScripts =  paste(FolderRoot, "/R", sep = "")
 
-##################
 
+
+################################################################################
+#' Execute ALL binary functions
+#'
+#' @family MultiLabel Binary Measures Functions
+#' @param ds information about the dataset
+#' @param number_dataset number of dataset to compute the measures
+#' @param number_cores number of cores to use in the cluster
+#' @param number_folds number of folds of cross validation  
+#' @param FolderResults temporary folder to compute
+#' 
+###############################################################################
 executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, FolderResults){
   
   dataset_name = ds$Name
@@ -84,25 +95,20 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     ###############################################################################
     # Load sources
     ###############################################################################
-    cat("\nCarregando scripts")
+    cat("\nCarregando scripts CV\n\n")    
     
-    cat("\nLibraries")
     setwd(FolderScripts)
-    source("libraries.R")
+    source("libraries.R")    
     
-    cat("\nUtils")
     setwd(FolderScripts)
-    source("utils.R")
+    source("utils.R")    
     
-    cat("\nContingency Table")
     setwd(FolderScripts)
-    source("functions_contingency_table_multilabel.R")
+    source("functions_contingency_table_multilabel.R")    
     
-    cat("\nBinary Data")
     setwd(FolderScripts)
-    source("functions_measures_binary_data.R")
+    source("functions_measures_binary_data.R")    
     
-    cat("\nBinary Measures")
     setwd(FolderScripts)
     source("functions_multilabel_binary_measures.R")
     
@@ -530,7 +536,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     
     ################################################################################
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, 
-                                m.n, funs[48], intersection.e.2)
+                                m.n, funs[48], intersection.e)
     result2[which(!is.finite(result2))] <- 0
     write.csv(result2, "intersection.csv")
     rm(result2)
@@ -768,7 +774,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     
     ################################################################################
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, 
-                                m.n, funs[82], roger.tanimoto.e.2)
+                                m.n, funs[82], roger.tanimoto.e)
     result2[which(!is.finite(result2))] <- 0
     write.csv(result2, "roger-tanimoto.csv")
     rm(result2)
@@ -777,7 +783,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, 
                                 m.n, funs[83], rogot.goldberd.e)
     result2[which(!is.finite(result2))] <- 0
-    write.csv(result2, " rogot-goldberd.csv")
+    write.csv(result2, "rogot-goldberd.csv")
     rm(result2)
     
     ################################################################################
@@ -829,7 +835,6 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     write.csv(result2, "sokal-sneath-1.csv")
     rm(result2)
     
-    ################################################################################
     ################################################################################
     result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, 
                                 m.n, funs[91], sokal.sneath.e.2)

@@ -35,7 +35,7 @@ setwd(FolderRoot)
 ###############################################################################
 # Load sources
 ###############################################################################
-cat("\nCarregando scripts")
+cat("\nCarregando scripts NCV")
 
 setwd(FolderScripts)
 source("libraries.R")

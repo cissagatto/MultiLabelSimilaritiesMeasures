@@ -32,15 +32,16 @@
   setwd(FolderRoot)
   FolderScripts = paste(FolderRoot, "/R", sep="")
   
-  ###############################################################################
-  # Ample ----------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Ample
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' 
+  #############################################################################
   ample.e.1 <- function(l){
     d1 = l$a*(l$c+l$d)
     d2 = l$c*(l$a+l$b)
@@ -57,16 +58,17 @@
     return(d4)
   } 
   
-  ###############################################################################
-  # Anderberg ----------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Anderberg
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
-  #' @param n
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   anderberg.e.1 <- function(l){
     delta_1 = max(l$a,l$b) + max(l$c,l$d) + max(l$a,l$c) + max(l$b,l$d) 
     delta_2 = max((l$a+l$c),(l$b+l$d)) + max((l$a+l$b),(l$c+l$d))
@@ -81,15 +83,17 @@
     return(delta)
   }
   
-  ###############################################################################
-  # Baroni Urbani Buser 1 ----------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Baroni Urbani Buser 1
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   baroni.urbani.buser.e.11 <- function(l){
     d1 = sqrt(abs(l$a*l$d)) + l$a
     d2 = sqrt(abs(l$a*l$d)) + a + l$b + l$c
@@ -104,15 +108,17 @@
     return(d3)
   }
   
-  ###############################################################################
-  # Baroni Urbani Buser 2 ----------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Baroni Urbani Buser 2
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   baroni.urbani.buser.e.22 <- function(l){
     d1 = l$a - l$b - l$c + sqrt(abs(l$a*l$d)) 
     d2 = l$a + l$b + l$c + sqrt(abs(l$a*l$d)) 
@@ -127,14 +133,17 @@
     return(d3)
   }
   
-  ###############################################################################
-  # Braun Banquet ----------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Braun Blanquet
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   braun.blanquet.e.1 <- function(l){
     return(l$a/max((l$a+l$b),(l$a+l$c)))
   }
@@ -143,14 +152,17 @@
     return(a/max((a+b),(a+c)))
   }
   
-  ###############################################################################
-  # Bray Curtis ----------------------------------------------------------------
-  #' Similaritie Measure for categorial data
-  #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
+  #############################################################################
+  #' Compute Bray Curtis
+  #' 
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   bray.curtis.e.1 <- function(l){
     return((l$b+l$c)/((2*l$a)+l$b+l$c))
   }
@@ -159,13 +171,17 @@
     return((b+c)/((2*a)+b+c))
   }
   
-  ###############################################################################
-  # Canberra ----------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Canberra
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param b
-  #' @param c
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   canberra.e.1 <- function(l){
     return((l$b+l$c)^(2/2))
   }
@@ -174,14 +190,17 @@
     return((b+c)^(2/2))
   }
   
-  ##############################################################################
-  # Chord ----------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Cohen
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   cohen.e.1 <- function(l){
     d1 = 2 * ((l$a*l$d) - (l$b*l$c))
     d2 = ((l$a+l$b)*(l$b+l$d)) + ((l$a+l$c)*(l$c+l$d))
@@ -196,14 +215,17 @@
     return(d3)
   }
   
-  ##############################################################################
-  # Chord ----------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Chord
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   chord.e.1 <- function(l){
     d1 = l$a/sqrt(abs((l$a+l$b)*(l$a+l$c)) ) 
     d2 = 1 - d1
@@ -218,13 +240,17 @@
     return(d3)
   }
   
-  ##############################################################################
-  # Cityblock ----------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Cityblock
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param b
-  #' @param c
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   cityblock.e.1 <- function(l){
     return(l$b+l$c)
   }
@@ -233,14 +259,17 @@
     return(b+c)
   }
   
-  
-  ##############################################################################
-  # Cityblock ----------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Clement
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param b
-  #' @param c
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   clement.e.1 <- function(l){
     d1 = l$a*(l$c+l$d) / (l$a+l$b)
     d2 = l$d*(l$a+l$b) / (l$c+l$d)
@@ -255,16 +284,17 @@
     return(d3)
   }
   
-  
-  ##############################################################################
-  # Cole ----------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Cole 1
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   cole.e.11 <- function(l){
     d1 = sqrt(2) * ((l$a*l$d)-(l$b*l$c))
     d2 = (((l$a*l$d)-(l$b*l$c))^2)
@@ -283,15 +313,17 @@
     return(d5)
   }
   
-  ##############################################################################
-  # Cole ----------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Cole 2
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   cole.e.22 <- function(l){
     d1 = (l$a*l$d) - (l$b*l$c)
     d2 = (l$a+l$b) * (l$b+l$d)
@@ -306,15 +338,17 @@
     return(d3)
   }
   
-  ##############################################################################
-  # Cole ----------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Cole 3
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   cole.e.33 <- function(l){
     d1 = (l$a*l$d) - (l$b*l$c)
     d2 = (l$a+l$c) * (l$c+l$d) 
@@ -329,14 +363,17 @@
     return(d3)
   }
   
-  ##############################################################################
-  # Cosine ----------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Cosine
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   cosine.e.1 <- function(l){
     return(l$a / sqrt(abs((((l$a+l$b) * (l$a+l$c))))^2))
   }
@@ -345,14 +382,17 @@
     return(a/sqrt(abs((((a+b) * (a+c))))^2))
   }
   
-  ##############################################################################
-  # Czekanowski ----------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Czekanowski
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   czekanowski.e.1 <- function(l){
     return((2*l$a)/((2*l$a)+l$b+l$c))
   }
@@ -361,16 +401,17 @@
     return((2*a)/((2*a)+b+c))
   }
   
-  ##############################################################################
-  # Dennis ----------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Denis
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
-  #' @param n
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   dennis.e.1 <- function(l){
     return(((l$a*l$d)-(l$b*l$c))/sqrt(abs(l$n*(l$a+l$b)*(l$a+l$c))))
   }
@@ -379,16 +420,17 @@
     return(((a*d)-(b*c))/sqrt(abs(n*(a+b)*(a+c))))
   }
   
-  ##############################################################################
-  # Digby ----------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Digby
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
-  #' @param n
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   digby.e.1 <- function(l){
     d1 = (l$a*l$d)^(3/4) - (l$b*l$c)^(3/4)
     d2 = (l$a*l$d)^(3/4) - (l$b*l$c)^(3/4)
@@ -403,14 +445,17 @@
     return(d3)
   }
   
-  ##############################################################################
-  # Dice ----------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Dice 1
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   dice.e.11 <- function(l){
     return((2*l$a)/((2*l$a)+l$b+l$c))
   }
@@ -419,15 +464,17 @@
     return((2*a)/((2*a)+b+c))
   }
   
-  
-  ##############################################################################
-  # Dice ----------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Dice 2
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   dice.e.22 <- function(l){
     return(l$a/l$a+l$b)
   }
@@ -436,14 +483,17 @@
     return(a/a+b)
   }
   
-  ##############################################################################
-  # Dice ----------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Dice 3
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   dice.e.33 <- function(l){
     return(l$a/l$a+l$c)
   }
@@ -452,15 +502,17 @@
     return(a/a+c)
   }
   
-  
-  ##############################################################################
-  # Dice ----------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Doolittle
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   doolittle.e.1 <- function(l){
     d1 = ((l$a*l$d) - (l$b*l$c))^2
     d2 = (l$a+l$b)*(l$a+l$c)*(l$c+l$d)*(l$b+l$d)
@@ -475,15 +527,17 @@
     return(d3)
   }
   
-  ##############################################################################
-  # Dispersion ----------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Disperson 
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   disperson.e.1 <- function(l){
     return(((l$a+l$d)-(l$b+l$c))/((l$a+l$b+l$c+l$d)^2))
   }
@@ -492,15 +546,17 @@
     return(((a+d)-(b+c))/((a+b+c+d)^2))
   }
   
-  ##############################################################################
-  #  Driver Kroeber ----------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Driver Kroeber 1
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   driver.kroeber.e.11 <- function(l){
     return((l$a/2) * ((1/(l$a+l$b)) + (1/(l$a+l$c))))
   }
@@ -509,16 +565,17 @@
     return((a/2) * ((1/(a+b)) + (1/(a+c))))
   }
   
-  
-  ##############################################################################
-  #  Driver Kroeber ----------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Driven Kroeber 2
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   driver.kroeber.e.22 <- function(l){
     return(l$a / sqrt(abs((l$a+l$b)*(l$a+l$c))))
   }
@@ -527,15 +584,17 @@
     return(a / sqrt(abs((a+b)*(a+c))))
   }
   
-  
-  
-  ##############################################################################
-  # Euclidean ----------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Euclidean
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param b
-  #' @param c
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   euclidean.e.1 <- function(l){
     return(l$b+l$c)
   }
@@ -544,16 +603,17 @@
     return(b+c)
   }
   
-  ##############################################################################
-  # Eyraud ----------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Eyraud
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
-  #' @param n
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   eyraud.e.1 <- function(l){
     d1 = (l$n^2) * ((l$n*l$a) - (l$a+l$b) * (l$a+l$c))
     d2 = (l$a+l$b) * (l$a+l$c) * (l$b+l$d) * (l$c+l$d)
@@ -568,14 +628,17 @@
     return(d3)
   }
   
-  ##############################################################################
-  # Fager Mcgowan ----------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Fager Mcgowan 1
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   fager.mcgowan.e.11 <- function(l){
     d1 = l$a/sqrt(abs((l$a+l$b)*(l$a+l$c)))
     d2 = max((l$a+l$b),(l$a+l$c))/2
@@ -590,14 +653,17 @@
     return(d3)
   }
   
-  ##############################################################################
-  # Fager Mcgowan ----------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Fager Mcgowman 2
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   fager.mcgowan.e.22 <- function(l){
     d1 = l$a/sqrt(abs((l$a+l$b)*(l$a+l$c)))
     d2 = 1/ (2 * sqrt(abs(max((l$a+l$b),(l$a+l$c)))))
@@ -612,15 +678,17 @@
     return(d3)
   }
   
-  ##############################################################################
-  # Faith ----------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Faith 
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   faith.e.1 <- function(l){
     return((l$a+(0.5*l$d))/(l$a+l$b+l$c+l$d))
   }
@@ -629,15 +697,17 @@
     return((a+(0.5*d))/(a+b+c+d))
   }
   
-  ##############################################################################
-  # Faith ----------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Fleiss
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   fleiss.e.1 <- function(l){
     d1 = ((l$a*l$d) - (l$b*l$c)) * ((l$a+l$b)*(l$b+l$d)) + ((l$a+l$c)*(l$c+l$d))
     d2 = 2 * (l$a+l$b)*(l$a+l$c)*(l$c+l$d)*(l$b+l$d)
@@ -652,15 +722,17 @@
     return(d3)
   }
   
-  ##############################################################################
-  # Forbes ----------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Forbes 2
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param n
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   forbes.e.22 <- function(l){
     d1 = (l$n*l$a) - (l$a+l$b) * (l$a+l$c)
     d2 = l$n * ( min((l$a+l$b),(l$a+l$c)) - ((l$a+l$b) * (l$a+l$c)) )
@@ -675,15 +747,17 @@
     return(d3)
   }
   
-  ##############################################################################
-  # Forbes ----------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Forbes 1
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param n
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequsency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   forbes.e.11 <- function(l){
     return((l$n*l$a)/ (l$a+l$b) * (l$a+l$c))
   }
@@ -692,14 +766,17 @@
     return((n*a)/ (a+b) * (a+c))
   }
   
-  ##############################################################################
-  # Forbesi ----------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Forbesi
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   forbesi.e.1 <- function(l){
     return((l$n*l$a)/((l$a+l$b)*(l$a+l$c)))
   }
@@ -708,15 +785,17 @@
     return((n*a)/((a+b)*(a+c)))
   }
   
-  ##############################################################################
-  # Fossum ---------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Fossum
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param n
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   fossum.e.1 <- function(l){
     return((l$n*(l$a-0.5)^2)/(l$a+l$b)*(l$a+l$c))
   }
@@ -725,15 +804,17 @@
     return((n*(a-0.5)^2)/(a+b)*(a+c))
   }
   
-  ##############################################################################
-  # Gilbert Well ---------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Gilbert Well
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param n
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   gilbert.well.e.1 <- function(l){
     return(log(l$a)-log(l$n)-log((l$a+l$b)/l$n)-log((l$a+l$c)/l$n))
   }
@@ -742,16 +823,17 @@
     return(log(a) - log(n) - log((a+b)/n) - log((a+c)/n))
   }
   
-  ##############################################################################
-  # Goodman Kruskal ---------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Goodman Kruskal 1
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
-  #' @param n
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   goodman.kruskal.e.11 <- function(l){
     z = max(l$a,l$b)+max(l$c,l$d)+max(l$a,l$c)+max(l$b,l$c)
     w = max((l$a+l$c),(l$b+l$d))+max((l$a+l$b),(l$c+l$d))
@@ -766,16 +848,17 @@
     return(p)
   }
   
-  ##############################################################################
-  # Goodman Kruskal ---------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Godman Kruskal 2
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
-  #' @param n
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   goodman.kruskal.e.22 <- function(l){
     d1 = 2* min(l$a,l$d) - l$b - l$c
     d2= 2* min(l$a,l$d) + l$b + l$c
@@ -790,15 +873,17 @@
     return(d3)
   }
   
-  ##############################################################################
-  # Gower ---------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Gower
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   gower.e.1 <- function(l){
     d1 = l$a+l$d
     d2 = sqrt(abs((l$a+l$b) * (l$a+l$c) * (l$b+l$d) * (l$c+l$d))) 
@@ -813,15 +898,17 @@
     return(d3)
   }
   
-  ##############################################################################
-  # Gower Legendre ---------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Gower Legendre
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   gower.legendre.e.1 <- function(l){
     return((l$a+l$d)/(l$a+(0.5*(l$b+l$c))+l$d))
   }
@@ -830,15 +917,17 @@
     return((a+d)/(a+(0.5*(b+c))+d))
   }
   
-  ##############################################################################
-  # Hamann ---------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Hamann
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   hamann.e.11 <- function(l){
     return(((l$a+l$d)-(l$b+l$c))/(l$a+l$b+l$c+l$d))
   }
@@ -847,15 +936,36 @@
     return(((a+d)-(b+c))/(a+b+c+d))
   }
   
-  ##############################################################################
-  # Harris and Lahey ---------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Hamann 2
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
+  hamann.e.22 <- function(l){
+    return((l$a-l$b-l$c+l$d)/(l$a+l$b+l$c+l$d))
+  }
+  
+  hamann.e.2 <- function(a,b,c,d,n){
+    return((a-b-c+d)/(a+b+c+d))
+  }
+  
+  #############################################################################
+  #' Compute Harris
+  #'
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   harris.e.1 <- function(l){
     d1 = (l$a * (l$c+l$d) + (l$b+l$d) ) / (2 * (l$a+l$b+l$c))
     d2 = (l$d * (l$a+l$b) + (l$a+l$c)) / (2 * (l$b+l$c+l$d))
@@ -870,30 +980,17 @@
     return(d3)
   }
   
-  ##############################################################################
-  # Hamann ---------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Hamming
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
-  hamann.e.22 <- function(l){
-    return((l$a-l$b-l$c+l$d)/(l$a+l$b+l$c+l$d))
-  }
-  
-  hamann.e.2 <- function(a,b,c,d,n){
-    return((a-b-c+d)/(a+b+c+d))
-  }
-  
-  ##############################################################################
-  # Hamming  ---------------------------------------------------------------
-  #' Similaritie Measure for categorial data
-  #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param b
-  #' @param c
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   hamming.e.1 <- function(l){
     return(l$b+l$c)
   }
@@ -902,13 +999,17 @@
     return(b+c)
   }
   
-  ##############################################################################
-  # Hamming  ---------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Hawkins
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param b
-  #' @param c
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   hawkins.dotson.e.1 <- function(l){
     return((1/2) * ((l$a/l$a+l$b+l$c) + (l$d/l$b+l$c+l$d)))
   }
@@ -917,14 +1018,17 @@
     return((1/2) * ((a/a+b+c) + (d/b+c+d)))
   }
   
-  ##############################################################################
-  # Helllinger  ---------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Hellinger
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   hellinger.e.1 <- function(l){
     d1 = l$a / sqrt(abs((l$a+l$b) * (l$a+l$c)))
     d2 = 1 - d1
@@ -941,13 +1045,17 @@
     return(d4)
   }
   
-  ##############################################################################
-  # Inner Product  ---------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Inner Product
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   inner.product.e.1 <- function(l){
     return(l$a+l$d)
   }
@@ -956,12 +1064,17 @@
     return(a+d)
   }
   
-  ##############################################################################
-  # Intersection  ---------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Intersection
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   intersection.e.1 <- function(l){
     return(l$a)
   }
@@ -970,14 +1083,17 @@
     return(a)
   }
   
-  ##############################################################################
-  # Jaccard ---------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Jaccard
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   jaccard.e.1 <- function(l){
     return(l$a/(l$a+l$b+l$c))
   }
@@ -986,14 +1102,17 @@
     return(a/(a+b+c))
   }
   
-  ##############################################################################
-  # Jonhson ---------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Jonhson
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   jonhson.e.1 <- function(l){
     return((l$a/(l$a+l$b)) + (l$a/(l$a+l$c)))
   }
@@ -1002,14 +1121,17 @@
     return((a/(a+b)) + (a/(a+c)))
   }
   
-  ##############################################################################
-  # kulczynski 1 ---------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Kent Foster 1
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   kent.foster.e.11 <- function(l){
     d1 = -(l$b*l$c)
     d2 = l$b*(l$a+l$b) + l$c*(l$a+l$c) + (l$b*l$c)
@@ -1024,14 +1146,17 @@
     return(d3) 
   }
   
-    ##############################################################################
-  # kulczynski 1 ---------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Kent Foster 2
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   kent.foster.e.22 <- function(l){
     d1 = -(l$b*l$c)
     d2 = l$b*(l$c+l$d) + l$c*(l$b+l$d) + (l$b*l$c)
@@ -1046,14 +1171,17 @@
     return(d3) 
   }
   
-  ##############################################################################
-  # kulczynski 1 ---------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Kulczynski 1
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   kulczynski.e.11 <- function(l){
     return(l$a/(l$b+l$c))
   }
@@ -1062,14 +1190,17 @@
     return(a/(b+c)) 
   }
   
-  ##############################################################################
-  # kulczynski 2 ---------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Kulczynski 2
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   kulczynski.e.22 <- function(l){
     d1 = (l$a/2) * ((2*l$a)+l$b+l$c)
     d2 = (l$a+l$b) * (l$a+l$c)
@@ -1084,14 +1215,17 @@
     return(d3)
   }
   
-  ##############################################################################
-  # kulczynski 2 ---------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Kulczynski 3
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   kulczynski.e.33 <- function(l){
     return((1/2) * ((l$a/l$a+l$b) + (l$a/l$a+l$c)))
   }
@@ -1100,14 +1234,17 @@
     return((1/2) * ((a/a+b) + (a/a+c)))
   }
   
-  ##############################################################################
-  # kulczynski 2 ---------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Kulczynski 4
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   kulczynski.e.44 <- function(l){
     return(l$a/l$b+l$c)
   }
@@ -1116,14 +1253,17 @@
     return(a/b+c)
   }
   
-  ##############################################################################
-  # kulczynski 2 ---------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Kuder Richardson
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   kuder.richardson.e.1 <- function(l){
     d1 = 4 * ((l$a*l$d) - (l$b*l$c))
     d2 = ((l$a+l$b)*(l$c+l$d)) + ((l$a+l$c)*(l$b+l$d)) + (2 *((l$a*l$d)-(l$b*l$c)))
@@ -1138,14 +1278,17 @@
     return(d3)
   }
   
-  ##############################################################################
-  # Lance Williams ---------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Lance Williams
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   lance.williams.e.1 <- function(l){
     return((l$b+l$c)/((2*l$a)+l$b+l$c))
   }
@@ -1154,14 +1297,17 @@
     return((b+c)/((2*a)+b+c))
   }
   
-  ##############################################################################
-  # Lance Williams ---------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Loevinger
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   loevinger.e.1 <- function(l){
     d1 = (l$a*l$d) - (l$b*l$c)
     d2 = min(((l$a+l$b)*(l$b+l$d)),((l$a+l$c)*(l$c+l$d)))
@@ -1177,12 +1323,16 @@
   }
   
   ##############################################################################
-  # Manhattan ---------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #' Compute Maxwell Pilliner
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param b
-  #' @param c
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   maxwell.pilliner.e.1 <- function(l){
     d1 = 2 * ((l$a*l$d) - (l$b*l$c))
     d2 = (l$a+l$b)*(l$c+l$d) + (l$c+l$d)*(l$b+l$d)
@@ -1197,13 +1347,17 @@
     return(d3)
   }
   
-  ##############################################################################
-  # Manhattan ---------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Manhattan
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param b
-  #' @param c
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   manhattan.e.1 <- function(l){
     return(l$b+l$c)
   }
@@ -1212,14 +1366,17 @@
     return(b+c)
   }
   
-  ##############################################################################
-  # Mcconnaughey ---------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Mcconnaughey
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   mcconnaughey.e.1 <- function(l){
     return(((l$a^2)-(l$b-l$c))/(l$a+l$b)*(l$a+l$c))
   }
@@ -1228,15 +1385,17 @@
     return(((a^2) - (b-c))/(a+b)*(a+c))
   }
   
-  ##############################################################################
-  # Mean Manhattan ---------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Mean Manhattan
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   mean.manhattan.e.1 <- function(l){
     return((l$b+l$c)/(l$a+l$b+l$c+l$d))
   }
@@ -1245,15 +1404,17 @@
     return((b+c)/(a+b+c+d))
   }
   
-  ##############################################################################
-  # Michael ---------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Michael
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   michael.e.1 <- function(l){
     return(4*((l$a*l$d)-(l$b*l$c))/((l$a+l$d)^2)+((l$b+l$c)^2))
   }
@@ -1262,13 +1423,17 @@
     return(4*((a*d)-(b*c))/((a+d)^2) + ((b+c)^2))
   }
   
-  ##############################################################################
-  # Minowski ---------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Minowski 1
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param b
-  #' @param c
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   minowski.e.1 <- function(l){
     return((l$b+l$c)^(1/1))
   }
@@ -1277,14 +1442,17 @@
     return((b+c)^(1/1))
   }
   
-  ##############################################################################
-  # Mountford ---------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Mountford 1
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   mountford.e.11 <- function(l){
     return(l$a/(0.5*(((l$a*l$b)+(l$a*l$c))+(l$b*l$c))))
   }
@@ -1293,14 +1461,17 @@
     return(a/(0.5*(((a*b)+(a*c))+(b*c))))
   }
   
-  ##############################################################################
-  # Mountford ---------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Mountford 2
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   mountford.e.22 <- function(l){
     return((2*l$a) / (a*(l$a+l$c) + 2*l$b*l$c))
   }
@@ -1309,14 +1480,17 @@
     return((2*a) / (a*(a+c) + 2*b*c))
   }
   
-  ##############################################################################
-  # Nei Li  ---------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Nei Li 1
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   nei.li.e.1 <- function(l){
     return((2*l$a)/((l$a+l$b)+(l$a+l$c)))
   }
@@ -1325,15 +1499,17 @@
     return((2*a)/((a+b)+(a+c)))
   }
   
-  ##############################################################################
-  # Ochiai 1  ---------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Ochiai 1
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   ochiai.e.11 <- function(l){
     return(l$a/sqrt(abs((l$a+l$b)*(l$a+l$c))))
   }
@@ -1342,15 +1518,17 @@
     return(a/sqrt(abs((a+b)*(a+c))))
   }
   
-  ##############################################################################
-  # Ochiai 2  ---------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Ochiai 2
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   ochiai.e.22 <- function(l){
     return((l$a*l$d)/sqrt(abs((l$a+l$d)*(l$a+l$c)*(l$d+l$b)*(l$d+l$c))))
   }
@@ -1359,15 +1537,17 @@
     return((a*d)/sqrt(abs((a+d)*(a+c)*(d+b)*(d+c))))
   }
   
-  ##############################################################################
-  # Ochiai 2  ---------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Ochiai 3
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   ochiai.e.33 <- function(l){
     return((l$a*l$d)/sqrt(abs((l$a+l$b)*(l$a+l$c)*(l$b+l$d)*(l$c+l$d))))
   }
@@ -1376,14 +1556,17 @@
     return((a*d)/sqrt(abs((a+b)*(a+c)*(b+d)*(c+d))))
   }
   
-  ##############################################################################
-  # Otsuka  ---------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Otsuka
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   otsuka.e.1 <- function(l){
     return(l$a/((l$a+l$b)*(l$a+l$c))^0.5)
   }
@@ -1392,15 +1575,17 @@
     return(a/((a+b)*(a+c))^0.5)
   }
   
-  ##############################################################################
-  # Pattern Difference  ---------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Pattern Difference 
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   pattern.difference.e.1 <- function(l){
     return((4*l$b*l$c)/((l$a+l$b+l$c+l$d)^2))
   }
@@ -1409,15 +1594,17 @@
     return((4*b*c)/((a+b+c+d)^2))
   }
   
-  ##############################################################################
-  # Pearson 1 ------------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Pearson 1
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   pearson.e.11 <- function(l){
     d1 = l$n * (((l$a*l$d) - (l$b*l$c))^2)
     d2 = (l$a+l$b) * (l$a+l$c) * (l$c+l$d) * (l$b+l$d)
@@ -1432,16 +1619,17 @@
     return(d3)
   }
   
-  ##############################################################################
-  # Pearson 2 ------------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Pearson 2
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
-  #' @param n
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   pearson.e.22 <- function(l){
     d1 = l$n * (((l$a*l$d) - (l$b*l$c))^2)
     d2 = (l$a+l$b) * (l$a+l$c) * (l$c+l$d) * (l$b+l$d)
@@ -1458,15 +1646,17 @@
     return(d4)
   }
   
-  ##############################################################################
-  # Pearson 3 ------------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Pearson 3
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   pearson.e.33 <- function(l){
     d1 = (l$a*l$d) - (l$b*l$c)
     d2 = sqrt( abs( (l$a+l$b)*(l$a+l$c)*(l$b+l$c)*(l$c+l$d) ) )
@@ -1483,15 +1673,17 @@
     return(d4)
   }
   
-  ##############################################################################
-  # Pearson Heron 1------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Pearson Heron 1
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   pearson.heron.e.11 <- function(l){
     d1 = (l$a*l$d) - (l$b*l$c)
     d2 = (l$a+l$b) * (l$a+l$c) * (l$b+l$d) * (l$c+l$d)
@@ -1508,16 +1700,17 @@
     return(d4)
   }
   
-  
-  ##############################################################################
-  # Pearson Heron 2------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Pearson Heron 2
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   pearson.heron.e.22 <- function(l){
     d1 = pi * sqrt(abs(l$b*l$c))
     d2  = sqrt(abs(l$a*l$d)) + sqrt(abs(l$b*l$c))
@@ -1534,15 +1727,17 @@
     return(d4)
   }
   
-  ##############################################################################
-  # Pierce --------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Pierce 1 
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   peirce.e.11 <- function(l){
     d1 = (l$a*l$b) + (l$b*l$c)
     d2 = (l$a*l$b) + (2*l$b*l$c) + (l$c*l$d)
@@ -1557,15 +1752,17 @@
     return(d3)
   }
   
-  ##############################################################################
-  # Pierce --------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Pierce 2
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   peirce.e.22 <- function(l){
     d1 = (l$a*l$d) - (l$b*l$c)
     d2 = (l$a+l$b) * (l$c+l$d)
@@ -1580,15 +1777,17 @@
     return(d3)
   }
   
-  ##############################################################################
-  # Pierce --------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Pierce 3
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   peirce.e.33 <- function(l){
     d1 = (l$a*l$d) - (l$b*l$c)
     d2 = (l$a+l$c) * (l$b+l$d)
@@ -1603,39 +1802,42 @@
     return(d3)
   }
   
-  ##############################################################################
-  # Roger Tanimoto -------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Rogers Tanimoto
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
-  roger.tanimoto.e.1 <- function(l){
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
+  rogers.tanimoto.e.1 <- function(l){
     d1 = l$a + l$d
     d2 = l$a + (2*(l$b+l$c)) + l$d
     d3 = d1/d2
     return(d3)
   }
   
-  roger.tanimoto.e <- function(a,b,c,d,n){
+  rogers.tanimoto.e <- function(a,b,c,d,n){
     d1 = a + d
     d2 = a + (2*(b+c)) + d
     d3 = d1/d2
     return(d3)
   }
   
-  
-  ##############################################################################
-  # Roger Tanimoto -------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Rogot Goldberd
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   rogot.goldberd.e.1 <- function(l){
     d1 = l$a/(l$a+l$b)+(l$a+l$c)
     d2 = l$d/(l$c+l$d)+(l$b+l$d)
@@ -1650,15 +1852,17 @@
     return(d3)
   }
   
-  ##############################################################################
-  # Russel Rao -----------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Russel Rao
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   russel.rao.e.1 <- function(l){
     return(l$a/(l$a+l$b+l$c+l$d))
   }
@@ -1667,16 +1871,17 @@
     return(a/(a+b+c+d))
   }
   
-  ##############################################################################
-  # Shape Difference -----------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Shape difference
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
-  #' @param n
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   shape.difference.e.1 <- function(l){
     d1 = l$n * (l$b+l$c) - ((l$b-l$c)^2)
     d2 = (l$a + l$b + l$c + l$d)^2
@@ -1691,14 +1896,17 @@
     return(d3)
   }
   
-  ##############################################################################
-  # Simpson --------------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Simpson
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   simpson.e.1 <- function(l){
     return(l$a/min((l$a+l$b),(l$a+l$c)))
   }
@@ -1707,15 +1915,17 @@
     return(a/min((a+b),(a+c)))
   }
   
-  ##############################################################################
-  # Size Difference ------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Size Difference
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   size.difference.e.1 <- function(l){
     d1 = (l$b+l$c)^2
     d2 = (l$a+l$b+l$c+l$d)^2
@@ -1730,15 +1940,17 @@
     return(d3)
   }
   
-  ##############################################################################
-  # Sokal Michener -------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Scott
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   scott.e.1 <- function(l){
     d1 = 4*l$a*l$d - ((l$b+l$c)^2)
     d2 = ((l$a+l$b) + (l$a+l$c)) * ((l$c+l$d)+(l$b+l$d))
@@ -1753,15 +1965,17 @@
     return(d3)
   }
   
-  ##############################################################################
-  # Sokal Michener -------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Sokal Michener
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   sokal.michener.e.1 <- function(l){
     return((l$a+l$d)/(l$a+l$b+l$c+l$d))
   }
@@ -1770,15 +1984,17 @@
     return((a+d)/(a+b+c+d))
   }
   
-  ##############################################################################
-  # Sokal Michener -------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Sokal Sneath 1
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   sokal.sneath.e.11 <- function(l){
     return(l$a/(l$a+(2*l$b)+(2*l$c)))
   }
@@ -1787,15 +2003,17 @@
     return(a/(a+(2*b)+(2*c)))
   }
   
-  ##############################################################################
-  # Sokal Michener -------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Sokal Sneath 2
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   sokal.sneath.e.21 <- function(l){
     return(2*(l$a+l$d)/((2*l$a)+l$b+l$c+(2*l$d)))
   }
@@ -1804,15 +2022,17 @@
     return(2*(a+d)/((2*a)+b+c+(2*d)))
   }
   
-  ##############################################################################
-  # Sokal Michener -------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Sokal Sneath 3
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   sokal.sneath.e.31 <- function(l){
     return((l$a+l$d)/(l$b+l$c))
   }
@@ -1821,15 +2041,17 @@
     return((a+d)/(b+c))
   }
   
-  ##############################################################################
-  # Sokal Michener -------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Sokal Sneath 4b
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   sokal.sneath.e.4b1 <- function(l){
     return((l$a/l$a+l$b) * (l$a/l$a+l$c) * (l$d/l$b+l$c) * (l$d/l$b+l$d))
   }
@@ -1838,15 +2060,17 @@
     return((a/a+b) * (a/a+c) * (d/b+c) * (d/b+d))
   }
   
-  ##############################################################################
-  # Sokal Michener -------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Sokal Sneath 4a
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   sokal.sneath.e.4a1 <- function(l){
     d1 = 1/4
     d2 = (l$a/l$a+l$b) * (l$a/l$a+l$c) * (l$a/l$c+l$d) * (l$a/l$b+l$d)
@@ -1861,15 +2085,17 @@
     return(d3)
   }
   
-  ##############################################################################
-  # Sokal Michener -------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Sokal Sneath 5b
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   sokal.sneath.e.5b1 <- function(l){
     d1 = l$a*l$d
     d2 = sqrt(abs((l$a+l$d) * (l$a+l$c) * (l$b+l$d) * (l$c+l$d)))
@@ -1884,15 +2110,17 @@
     return(d3)
   }
   
-  ##############################################################################
-  # Sokal Michener -------------------------------------------------------------
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Sokal Sneath 5a
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   sokal.sneath.e.5a1 <- function(l){
     d1 = l$a*l$d
     d2 = ((l$a+l$d) * (l$a+l$c) * (l$b+l$d) * (l$c+l$d))^0.5
@@ -1907,15 +2135,17 @@
     return(d3)
   }
   
-  ###############################################################################
-  # Sorgenfrei
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Sorgenfrei
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   sorgenfrei.e.1 <- function(l){
     d1 = l$a^2
     d2 = (l$a+l$b) * (l$a+l$b)
@@ -1930,15 +2160,17 @@
     return(d3)
   }
   
-  ###############################################################################
-  # Square Euclidean
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Square Euclidean 
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   square.euclidean.e.1 <- function(l){
     return(sqrt(abs((l$b+l$c)^2)))
   }
@@ -1947,15 +2179,17 @@
     return(sqrt(abs((b+c)^2)))
   }
   
-  ###############################################################################
-  # Stiles
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Stiles
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   stiles.e.1 <- function(l){
     d1 = l$n * ( abs((l$a*l$d) - (l$n/2)) )^2
     d2 = (l$a+l$b) * (l$a+l$c) * (l$b+l$d) * (l$c+l$d)
@@ -1972,15 +2206,17 @@
     return(d4)
   }
   
-  ###############################################################################
-  # Tanimoto
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Tanimoto
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   tanimoto.e.1 <- function(l){
     d1 = l$a
     d2 = (l$a+l$b) + (l$a+l$c) - l$a
@@ -1995,15 +2231,17 @@
     return(d3)
   }
   
-  ###############################################################################
-  # Tarantula
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Tarantula
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   tarantula.e.1 <- function(l){
     d1 = l$l$a* (l$c+l$d)
     d2 = l$c * (l$a+l$d)
@@ -2018,15 +2256,17 @@
     return(d3)
   }
   
-  ###############################################################################
-  # Tarwid
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Tarwid
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   tarwid.e.1 <- function(l){
     d1 = l$n*l$a - (l$a+l$b) * (l$a+l$c)
     d2 = l$n*l$a + (l$a+l$b) * (l$a+l$c)
@@ -2041,37 +2281,42 @@
     return(d3)
   }
   
-  ###############################################################################
-  # 3W Jaccard
-  #' Similaritie Measure for categorial data
+  #############################################################################
+  #' Compute Three W Jaccard
   #'
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   three.w.jaccard.e.1 <- function(l){
     d1 = 3 * l$a
-    d2 = 3 * l$a + b + c
+    d2 = 3 * l$a + l$b + l$c
     d3 = d1/d2
     return(d3)
   }
   
   three.w.jaccard.e <- function(a,b,c,d,n){
-    d1 = 3 * l$a
-    d2 = 3 * l$a + b + c
+    d1 = 3 * a
+    d2 = 3 * a + b + c
     d3 = d1/d2
     return(d3)
   }
   
-  ##############################################################################
-  # Vari -----------------------------------------------------------------------
-  #' Similaritie Measure for categorial data
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #############################################################################
+  #' Compute Vari
+  #'
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   vari.e.1 <- function(l){
     d1 = l$b+l$c
     d2 = 4 * (l$a + l$b + l$c + l$d)
@@ -2086,14 +2331,17 @@
     return(d3)
   }
   
-  ##############################################################################
-  # Yuleq 1 --------------------------------------------------------------------
-  #' Similaritie Measure for categorial data
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #############################################################################
+  #' Compute Yule 1
+  #'
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   yule.e.11 <- function(l){
     d1 = (l$a*l$d) - (l$b*l$c)
     d2 = (l$a*l$d) - (l$b*l$c)
@@ -2108,14 +2356,17 @@
     return(d3)
   }
   
-  ##############################################################################
-  # Yuleq 2 --------------------------------------------------------------------
-  #' Similaritie Measure for categorial data
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #############################################################################
+  #' Compute Yule 2
+  #'
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   yule.e.21 <- function(l){
     d1 = 2*l$b*l$c
     d2 = (l$a*l$d) + (l$b*l$c)
@@ -2130,14 +2381,17 @@
     return(d3)
   }
   
-  ##############################################################################
-  # Yule ---------------------------------------------------------------------
-  #' Similaritie Measure for categorial data 
-  #' @family Multi_Label_Binary_Measures
-  #' @param a
-  #' @param b
-  #' @param c
-  #' @param d
+  #############################################################################
+  #' Compute Yule 3
+  #'
+  #' @family MultiLabel Binary Measures Functions
+  #' @param  a frequency which label i and label j occur together
+  #' @param  b frequency which label i occur alone
+  #' @param  c frequency which label j occur alone
+  #' @param  d frequency which label i and label j not occur together
+  #' @param  n a + b + c + d 
+  #' 
+  #############################################################################
   yule.e.31 <- function(l){
     d1 = sqrt(abs(l$a*l$d)) - sqrt(abs(l$b*l$c))
     d2 = sqrt(abs(l$a*l$d)) - sqrt(abs(l$b*l$c))
@@ -2238,7 +2492,7 @@
                        "peirce.e.1",
                        "peirce.e.2",
                        "peirce.e.3",
-                       "roger.tanimoto.e",
+                       "rogers.tanimoto.e",
                        "rogot.goldberd.e",
                        "russel.rao.e",
                        "scott.e",

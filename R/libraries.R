@@ -32,7 +32,11 @@ if (sistema[1] == "Linux") {
 setwd(FolderRoot)
 FolderScripts =  paste(FolderRoot, "/R", sep = "")
 
-####################################
+###############################
+
+print(.libPaths())
+
+
 library("dplyr")
 library("progress")
 library("stringr")

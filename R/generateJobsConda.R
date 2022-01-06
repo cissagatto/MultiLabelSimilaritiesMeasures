@@ -35,7 +35,8 @@ setwd(FolderRoot)
 FolderScripts =  paste(FolderRoot, "/R", sep = "")
 
 
-FolderJob = paste(FolderRoot, "/Jobs-MLSM", sep="")
+FolderJob = paste(FolderRoot, "/Jobs", sep="")
+if(dir.exists(FolderJob)==FALSE){dir.create(FolderJob)}
 
 library(stringr)
 
@@ -54,7 +55,7 @@ n = nrow(datasets)
     
     write("#!/bin/bash", file = output.file)
     
-    str1 = paste("#SBATCH -J ", dataset$Name, sep="")
+    str1 = paste("#SBATCH -J mlsm-", dataset$Name, sep="")
     write(str1, file = output.file, append = TRUE)
     
     write("#SBATCH -o %j.out", file = output.file, append = TRUE)
@@ -63,17 +64,19 @@ n = nrow(datasets)
     
     write("#SBATCH -c 10", file = output.file, append = TRUE)
     
-    #write("#SBATCH --partition fast", file = output.file, append = TRUE)
+    write("#SBATCH --partition slow", file = output.file, append = TRUE)
     
-    write("#SBATCH -t 128:00:00", file = output.file, append = TRUE)
+    write("#SBATCH -t 720:00:00", file = output.file, append = TRUE)
     
-    write("#SBATCH --mail-user=elainegatto@estudante.ufscar.br", file = output.file, append = TRUE)
+    write("#SBATCH --mail-user=elainegatto@estudante.ufscar.br",
+          file = output.file, append = TRUE)
     
     write("#SBATCH --mail-type=ALL", file = output.file, append = TRUE)
     
     write("", file = output.file, append = TRUE)
     
-    str2 = paste("local_job=",  "\"/scratch/", dataset$Name, "\"", sep="")
+    str2 = paste("local_job=",  "\"/scratch/mlsm-",
+                 dataset$Name, "\"", sep="")
     write(str2, file = output.file, append = TRUE)
     
     write("", file = output.file, append = TRUE)
@@ -90,7 +93,8 @@ n = nrow(datasets)
     
     write("", file = output.file, append = TRUE)
     
-    write("trap clean_job EXIT HUP INT TERM ERR", file = output.file, append = TRUE)
+    write("trap clean_job EXIT HUP INT TERM ERR", 
+          file = output.file, append = TRUE)
     
     write("", file = output.file, append = TRUE)
     
@@ -102,16 +106,18 @@ n = nrow(datasets)
     
     write("", file = output.file, append = TRUE)
     
-    str5 = paste("echo RUN ", dataset$Name, sep="")
+    str5 = paste("echo RUN mlsm-", dataset$Name, sep="")
     write(str5, file = output.file, append = TRUE)
     
     write("", file = output.file, append = TRUE)
     
-    write("source /home/u704616/miniconda3/etc/profile.d/conda.sh", file = output.file, append = TRUE)
+    write("source /home/u704616/miniconda3/etc/profile.d/conda.sh", 
+          file = output.file, append = TRUE)
     
     write("conda activate hpml", file = output.file, append = TRUE)
     
-    str7 = paste("Rscript /home/u704616/MultiLabelSimilaritiesMeasures/R/mlsm.R ", dataset$Id, " 10 10 ", "\"/scratch/", dataset$Name, "\"", sep="")
+    str7 = paste("Rscript /home/u704616/MultiLabelSimilaritiesMeasures/R/mlsm.R ",
+                 dataset$Id, " 10 10 ", "\"/scratch/mlsm-", dataset$Name, "\"", sep="")
     write(str7, file = output.file, append = TRUE)
     
     close(output.file)
