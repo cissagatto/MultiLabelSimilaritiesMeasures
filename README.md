@@ -22,6 +22,8 @@ This code has the following script in the R folder
 8. mlsm.R
 9. generateJobsConda.R
 
+## FLOWCHART
+<img src="https://github.com/cissagatto/MultiLabelSimilaritiesMeasures/blob/main/fluxograma-comunidades-simples.png" width="300">
 
 ## Preparing your experiment
 
