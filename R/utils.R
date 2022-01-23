@@ -44,7 +44,7 @@ diretorios <- function(dataset_name, FolderResults){
   if(dir.exists(FolderScripts)==FALSE){dir.create(FolderScripts)}
   
   FolderDocs =  paste(FolderRoot, "/Docs", sep="")
-  if(dir.exists(FolderDocs)==FALSE){dir.create(FolderDocs)}
+  #if(dir.exists(FolderDocs)==FALSE){dir.create(FolderDocs)}
   
   FolderReports =  paste(FolderRoot, "/Reports", sep="")
   if(dir.exists(FolderReports)==FALSE){dir.create(FolderReports)}
@@ -77,7 +77,7 @@ diretorios <- function(dataset_name, FolderResults){
   if(dir.exists(FolderVL)==FALSE){dir.create(FolderVL)}
 
   FolderPlots = paste(FolderRoot, "/Plots", sep="")
-  if(dir.exists(FolderPlots)==FALSE){dir.create(FolderPlots)}
+  #if(dir.exists(FolderPlots)==FALSE){dir.create(FolderPlots)}
   
   retorno$FolderDS = FolderDS
   retorno$FolderResults = FolderResults

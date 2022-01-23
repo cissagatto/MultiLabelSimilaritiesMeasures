@@ -101,7 +101,7 @@ cat("\n\n")
 
 ##################################################################################################
 # DON'T RUN -- it's only for test the code
-# ds <- datasets[23,]
+# ds <- datasets[22,]
 # dataset_name = ds$Name
 # number_dataset = ds$Id
 # number_cores = 10             
@@ -201,7 +201,11 @@ if(number_folds==1){
 } else {
   cat("\nExecute MLSM with Cross Validation (number folds > 1) \n")
   timeFinal <- system.time(results <- executeMLSM_CV(ds, number_dataset, number_cores, number_folds, FolderResults))
+  result_set <- t(data.matrix(timeFinal))
+  setwd(folder$FolderRD)
+  write.csv(result_set, "Runtime.csv", row.names = FALSE)
   print(timeFinal)
+  gc()
 }
 
 
@@ -223,17 +227,17 @@ if(a != 0) {
 ##################################################################################################
 # del                                                                                      #
 ##################################################################################################
-cat("\nDelete folder \n")
+cat("\nDelete Folder Results \n")
 str5 = paste("rm -r ", folder$FolderResults, sep="")
 print(system(str5))
 
-cat("\nDelete folder \n")
-str5 = paste("rm -r ", FolderRoot, "/datasets/", dataset_name, sep="")
-print(system(str5))
+cat("\nDelete Folder Dataset\n")
+str6 = paste("rm -r ", FolderRoot, "/Datasets/", dataset_name, sep="")
+print(system(str6))
 
-cat("\nDelete folder \n")
-str5 = paste("rm -r ", folder$FolderRD, sep="")
-print(system(str5))
+cat("\nDelete Folder Reports \n")
+str7 = paste("rm -r ", folder$FolderRD, sep="")
+print(system(str7))
 
 gc()
 
