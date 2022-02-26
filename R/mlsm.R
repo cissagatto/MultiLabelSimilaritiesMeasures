@@ -19,113 +19,82 @@
 
 rm(list=ls())
 
-##################################################################################################
-# Configures the workspace according to the operating system                                     #
-##################################################################################################
-sistema = c(Sys.info())
-FolderRoot = ""
-if (sistema[1] == "Linux") {
-  FolderRoot = paste("/home/", sistema[7], "/MultiLabelSimilaritiesMeasures", sep = "")
-  setwd(FolderRoot)
-} else {
-  FolderRoot = paste("C:/Users/", sistema[7], "/MultiLabelSimilaritiesMeasures", sep = "")
-  setwd(FolderRoot)
-}
-setwd(FolderRoot)
-FolderScripts =  paste(FolderRoot, "/R", sep = "")
+cat("\n\n###################################################################")
+cat("\n# ====> MLSM:  SET WORK SPACE                                       #")
+cat("\n#####################################################################\n\n")
+FolderRoot = "~/MultiLabelSimilaritiesMeasures"
+FolderScripts = paste(FolderRoot, "/R/", sep="")
 
 
-##################################################################################################
-# Options Configuration                                                                          #
-##################################################################################################
-cat("\nopções de configurações")
+cat("\n\n###################################################################")
+cat("\n# ====> MLSM: OPTIONS CONFIGURATIONS                                #")
+cat("\n#####################################################################\n\n")
 options(java.parameters = "-Xmx32g")
 options(show.error.messages = TRUE)
-options(scipen = 10)
+options(scipen=20)
 
 
-##################################################################################################
-# Read the dataset file with the information for each dataset                                    #
-##################################################################################################
+cat("\n\n###################################################################")
+cat("\n# ====> MLSM: READ DATASETS-2022                                    #")
+cat("\n#####################################################################\n\n")
 setwd(FolderRoot)
 datasets <- data.frame(read.csv("datasets-2022.csv"))
 
 
-##################################################################################################
-# ARGS COMMAND LINE                                                                              #
-##################################################################################################
+cat("\n\n###################################################################")
+cat("\n# ====> MLSM: GET THE ARGUMENTS COMMAND LINE                        #")
+cat("\n#####################################################################\n\n")
 args <- commandArgs(TRUE)
 
 
-##################################################################################################
-# Get dataset information                                                                        #
-##################################################################################################
-number_dataset = as.numeric(args[1])
-cat("\nMLSM: DS \t ", number_dataset)
+cat("\n\n###################################################################")
+cat("\n# ====> MLSM: DATASET INFORMATION                                   #")
+cat("\n#####################################################################\n\n")
+ds <- datasets[args[1],]
+print(ds)
 
 
-##################################################################################################
-# Get dataset information                                                                        #
-##################################################################################################
-ds <- datasets[number_dataset,]
+number_dataset <- as.numeric(args[1])
+cat("\n\n###################################################################")
+cat("\n# ====> MLSM: NUMBER DATASET: ", number_dataset, "                  #")
+cat("\n#####################################################################\n\n")
 
 
-##################################################################################################
-# Get the number of cores                                                                        #
-##################################################################################################
 number_cores <- as.numeric(args[2])
-cat("\nMLSM: cores \t ", number_cores)
+cat("\n\n###################################################################")
+cat("\n# ====> MLSM: GET THE NUMBER CORES: ", number_cores, "              #")
+cat("\n#####################################################################\n\n")
 
 
-##################################################################################################
-# Get the number of folds                                                                        #
-##################################################################################################
 number_folds <- as.numeric(args[3])
-cat("\nMLSM: folds \t ", number_folds)
+cat("\n\n###################################################################")
+cat("\n# ====> MLSM: GET THE NUMBER FOLDS: ", number_folds, "              #")
+cat("\n#####################################################################\n\n")
 
 
-##################################################################################################
-# Get the number of folds                                                                        #
-##################################################################################################
-FolderResults  <- toString(args[4])
-cat("\nMLSM: folder \t ", FolderResults)
+FolderResults <- toString(args[4])
+cat("\n\n###################################################################")
+cat("\n# ====> MLSM: GET THE STRING FOLDER RESULTS: ", FolderResults, "    #")
+cat("\n#####################################################################\n\n")
 
 
-##################################################################################################
-# Get dataset name                                                                               #
-##################################################################################################
-dataset_name  <- toString(ds$Name) 
-cat("\nMLSM: nome \t ", dataset_name)
-cat("\n\n")
+dataset_name <- toString(ds$Name)
+cat("\n\n###################################################################")
+cat("\n# ====> MLSM: GET THE DATASET NAME: ", dataset_name, "              #")
+cat("\n#####################################################################\n\n")
 
 
-##################################################################################################
-# DON'T RUN -- it's only for test the code
-# ds <- datasets[22,]
-# dataset_name = ds$Name
-# number_dataset = ds$Id
-# number_cores = 10             
-# number_folds = 10
-# FolderResults = "/dev/shm/teste"
-##################################################################################################
+cat("\n\n###################################################################")
+cat("\n# ====> MLSM: CREATING FOLDER RESULTS TEMP                          #")
+cat("\n#####################################################################\n\n")
+if(dir.exists(FolderResults)==FALSE){ dir.create(FolderResults)}
+cat("\n")
 
 
-##################################################################################################
-# CONFIG THE FOLDER RESULTS                                                                      #
-##################################################################################################
-if(dir.exists(FolderResults)==FALSE){
-  dir.create(FolderResults)
-  cat("\n")
-}
+cat("\n\n###################################################################")
+cat("\n# ====> MLSM: LOAD SOURCES R                                        #")
+cat("\n#####################################################################\n\n")
 
-##################################################################################################
-# PRINT PATH LIBRARIES                                                                          #
-##################################################################################################
-print(.libPaths())
-
-##################################################################################################
-# LOAD SOURCES                                                                                   #
-##################################################################################################
 setwd(FolderScripts)
 source("runCV.R") 
 
@@ -139,33 +108,37 @@ setwd(FolderScripts)
 source("utils.R") 
 
 
-##################################################################################################
-# GET THE DIRECTORIES                                                                            #
-##################################################################################################
+cat("\n\n###################################################################")
+cat("\n# ====> MLSM: CREATING DIRECTORIES                                  #")
+cat("\n#####################################################################\n\n")
 setwd(FolderRoot)
 cat("\nGet directories\n")
 folder = diretorios(dataset_name, FolderResults)
 
 
-##################################################################################################
-cat("\nCopy FROM google drive \n")
+
+cat("\n\n###################################################################")
+cat("\n# ====> MLSM: COPY DATA SETS FROM GOOGLE DRIVE                      #")
+cat("\n#####################################################################\n\n")
 destino = folder$FolderDS
 origem = paste("cloud:Datasets/CrossValidation_WithValidation/", dataset_name, sep="")
-comando = paste("rclone -v copy ", origem, " ", destino, sep="")
-cat("\n", comando, "\n") 
+comando = paste("rclone -P copy ", origem, " ", destino, sep="")
+cat("\n\n\n", comando, "\n\n\n") 
 a = print(system(comando))
 a = as.numeric(a)
 if(a != 0) {
   stop("Erro RCLONE")
   quit("yes")
 }
+
  
-##################################################################################################
-cat("\nCopy FROM google drive \n")
+cat("\n\n###################################################################")
+cat("\n# ====> MLSM: COPY DATA SETS FROM GOOGLE DRIVE                      #")
+cat("\n#####################################################################\n\n")
 destino = folder$FolderDS
 origem = paste("cloud:Datasets/Originais/", dataset_name, ".arff", sep="")
-comando = paste("rclone -v copy ", origem, " ", destino, sep="")
-cat("\n", comando, "\n") 
+comando = paste("rclone -P copy ", origem, " ", destino, sep="")
+cat("\n\n\n", comando, "\n\n\n") 
 a = print(system(comando))
 a = as.numeric(a)
 if(a != 0) {
@@ -173,12 +146,14 @@ if(a != 0) {
  quit("yes")
 }
  
-##################################################################################################
-cat("\nCopy FROM google drive \n")
+
+cat("\n\n###################################################################")
+cat("\n# ====> MLSM: COPY DATA SETS FROM GOOGLE DRIVE                      #")
+cat("\n#####################################################################\n\n")
 destino = folder$FolderDS
 origem = paste("cloud:Datasets/Originais/", dataset_name, ".xml", sep="")
-comando = paste("rclone -v copy ", origem, " ", destino, sep="")
-cat("\n", comando, "\n") 
+comando = paste("rclone -P copy ", origem, " ", destino, sep="")
+cat("\n\n\n", comando, "\n\n\n") 
 a = print(system(comando))
 a = as.numeric(a)
 if(a != 0) {
@@ -187,10 +162,9 @@ if(a != 0) {
 }
 
 
-##################################################################################################
-# execute the code and get the total execution time                                              #
-# n_dataset, number_cores, number_folds                                                          #
-##################################################################################################
+cat("\n\n###################################################################")
+cat("\n# ====> MLSM: START                                                 #")
+cat("\n#####################################################################\n\n")
 
 if(number_folds==1){
   #cat("\nExecute MLSM without Cross Validation \n")
@@ -201,21 +175,34 @@ if(number_folds==1){
 } else {
   cat("\nExecute MLSM with Cross Validation (number folds > 1) \n")
   timeFinal <- system.time(results <- executeMLSM_CV(ds, number_dataset, number_cores, number_folds, FolderResults))
-  result_set <- t(data.matrix(timeFinal))
-  setwd(folder$FolderRD)
-  write.csv(result_set, "Runtime.csv", row.names = FALSE)
   print(timeFinal)
   gc()
+  
+  cat("\n\n###################################################################")
+  cat("\n# ====> MLSM: SAVE RUNTIME                                          #")
+  cat("\n#####################################################################\n\n")
+  result_set <- t(data.matrix(timeFinal))
+  setwd(folder$FolderRD)
+  write.csv(result_set, "Runtime.csv")
+  print(timeFinal)
+  cat("\n")
+  
 }
 
+cat("\n\n###################################################################")
+cat("\n# ====> MLSM: DELETE DATASETS FOLDER                                #")
+cat("\n#####################################################################\n\n")
+print(system(paste("rm -r ", folder$FolderDS, sep="")))
+print(system(paste("rm -r ", folder$FolderDatasets, sep="")))
 
  
-###################################################################################################
-cat("\nCopy to google drive \n")
+cat("\n\n###################################################################")
+cat("\n# ====> MLSM: COPY TO GOOGLE DRIVE                                  #")
+cat("\n#####################################################################\n\n")
 origem = folder$FolderRD
 destino = paste("cloud:[2022]ResultadosExperimentos/Similaridades/", dataset_name, sep="")
-comando = paste("rclone -v copy ", origem, " ", destino, sep="")
-cat("\n", comando, "\n") 
+comando = paste("rclone -P copy ", origem, " ", destino, sep="")
+cat("\n\n\n", comando, "\n\n\n") 
 a = print(system(comando))
 a = as.numeric(a)
 if(a != 0) {
@@ -224,23 +211,12 @@ if(a != 0) {
 }
 
 
-##################################################################################################
-# del                                                                                      #
-##################################################################################################
-cat("\nDelete Folder Results \n")
+cat("\n\n###################################################################")
+cat("\n# ====> MLSM: CLEAN                                                 #")
+cat("\n#####################################################################\n\n")
 str5 = paste("rm -r ", folder$FolderResults, sep="")
 print(system(str5))
-
-cat("\nDelete Folder Dataset\n")
-str6 = paste("rm -r ", FolderRoot, "/Datasets/", dataset_name, sep="")
-print(system(str6))
-
-cat("\nDelete Folder Reports \n")
-str7 = paste("rm -r ", folder$FolderRD, sep="")
-print(system(str7))
-
 gc()
-
 rm(list=ls())
 
 ##################################################################################################

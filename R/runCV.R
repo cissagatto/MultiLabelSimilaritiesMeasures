@@ -17,21 +17,9 @@
 #                                                                                                #
 ##################################################################################################
 
-##################################################################################################
-# Configures the workspace according to the operating system                                     #
-##################################################################################################
-sistema = c(Sys.info())
-FolderRoot = ""
-if (sistema[1] == "Linux") {
-  FolderRoot = paste("/home/", sistema[7], "/MultiLabelSimilaritiesMeasures", sep = "")
-  setwd(FolderRoot)
-} else {
-  FolderRoot = paste("C:/Users/", sistema[7], "/MultiLabelSimilaritiesMeasures", sep = "")
-  setwd(FolderRoot)
-}
-setwd(FolderRoot)
-FolderScripts =  paste(FolderRoot, "/R", sep = "")
 
+FolderRoot = "~/MultiLabelSimilaritiesMeasures"
+FolderScripts = paste(FolderRoot, "/R/", sep="")
 
 
 ################################################################################
@@ -77,20 +65,8 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     ##################################################################################################
     # Configures the workspace according to the operating system                                     #
     ##################################################################################################
-    sistema = c(Sys.info())
-    FolderRoot = ""
-    if (sistema[1] == "Linux") {
-      FolderRoot = paste("/home/", sistema[7], "/MultiLabelSimilaritiesMeasures", sep = "")
-      setwd(FolderRoot)
-      print(FolderRoot)
-    } else {
-      FolderRoot = paste("C:/Users/", sistema[7], "/MultiLabelSimilaritiesMeasures", sep = "")
-      setwd(FolderRoot)
-      print(FolderRoot)
-    }
-    setwd(FolderRoot)
-    FolderScripts =  paste(FolderRoot, "/R", sep = "")
-    
+    FolderRoot = "~/MultiLabelSimilaritiesMeasures"
+    FolderScripts = paste(FolderRoot, "/R/", sep="")
     
     ###############################################################################
     # Load sources
@@ -118,7 +94,7 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     
     ##############################################################
     cat("\nSplit Folder")
-    FolderSplit = paste(folder$FolderResults, "/Split-", f, sep="")
+    FolderSplit = paste(folder$FolderRD, "/Split-", f, sep="")
     if(dir.exists(FolderSplit)==FALSE){dir.create(FolderSplit)}
     setwd(FolderSplit)
     
@@ -486,18 +462,18 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     #rm(result2)
     
     ################################################################################
-    result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, 
-                                m.n, funs[41], hamann.e.1)
-    result2[which(!is.finite(result2))] <- 0
-    write.csv(result2, "hamann-1.csv")
-    rm(result2)
+    #result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, 
+    #                            m.n, funs[41], hamann.e.1)
+    #result2[which(!is.finite(result2))] <- 0
+    #write.csv(result2, "hamann-1.csv")
+    #rm(result2)
     
     ################################################################################
-    result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, 
-                                m.n, funs[42], hamann.e.2)
-    result2[which(!is.finite(result2))] <- 0
-    write.csv(result2, "hamann-2.csv")
-    rm(result2)
+    #result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, 
+    #                            m.n, funs[42], hamann.e.2)
+    #result2[which(!is.finite(result2))] <- 0
+    #write.csv(result2, "hamann-2.csv")
+    #rm(result2)
     
     ################################################################################
     #result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, 
@@ -682,25 +658,25 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     #rm(result2)
     
     ################################################################################
-    result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d,
-                                m.n, funs[69], ochiai.e.1)
-    result2[which(!is.finite(result2))] <- 0
-    write.csv(result2, "ochiai-1.csv")
-    rm(result2)
+    #result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d,
+    #                            m.n, funs[69], ochiai.e.1)
+    #result2[which(!is.finite(result2))] <- 0
+    #write.csv(result2, "ochiai-1.csv")
+    #rm(result2)
     
     ################################################################################
-    result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d,
-                                m.n, funs[70], ochiai.e.2)
-    result2[which(!is.finite(result2))] <- 0
-    write.csv(result2, "ochiai-2.csv")
-    rm(result2)
+    #result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d,
+    #                            m.n, funs[70], ochiai.e.2)
+    #result2[which(!is.finite(result2))] <- 0
+    #write.csv(result2, "ochiai-2.csv")
+    #rm(result2)
     
     ################################################################################
-    result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d,
-                                m.n, funs[71], ochiai.e.3)
-    result2[which(!is.finite(result2))] <- 0
-    write.csv(result2, "ochiai-3.csv")
-    rm(result2)
+    #result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d,
+    #                            m.n, funs[71], ochiai.e.3)
+    #result2[which(!is.finite(result2))] <- 0
+    #write.csv(result2, "ochiai-3.csv")
+    #rm(result2)
     
     ################################################################################
     #result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, 
@@ -829,53 +805,53 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     #rm(result2)
     
     ################################################################################
-    result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, 
-                                m.n, funs[90], sokal.sneath.e.1)
-    result2[which(!is.finite(result2))] <- 0
-    write.csv(result2, "sokal-sneath-1.csv")
-    rm(result2)
+    #result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, 
+    #                            m.n, funs[90], sokal.sneath.e.1)
+    #result2[which(!is.finite(result2))] <- 0
+    #write.csv(result2, "sokal-sneath-1.csv")
+    #rm(result2)
     
     ################################################################################
-    result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, 
-                                m.n, funs[91], sokal.sneath.e.2)
-    result2[which(!is.finite(result2))] <- 0
-    write.csv(result2, "sokal-sneath-2.csv")
-    rm(result2)
+    #result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, 
+    #                            m.n, funs[91], sokal.sneath.e.2)
+    #result2[which(!is.finite(result2))] <- 0
+    #write.csv(result2, "sokal-sneath-2.csv")
+    #rm(result2)
     
     ################################################################################
-    result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, 
-                                m.n, funs[92], sokal.sneath.e.3)
-    result2[which(!is.finite(result2))] <- 0
-    write.csv(result2, "sokal-sneath-3.csv")
-    rm(result2)
+    #result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, 
+    #                            m.n, funs[92], sokal.sneath.e.3)
+    #result2[which(!is.finite(result2))] <- 0
+    #write.csv(result2, "sokal-sneath-3.csv")
+    #rm(result2)
     
     ################################################################################
-    result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, 
-                                m.n, funs[93], sokal.sneath.e.4a)
-    result2[which(!is.finite(result2))] <- 0
-    write.csv(result2, "sokal-sneath-4a.csv")
-    rm(result2)
+    #result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, 
+    #                           m.n, funs[93], sokal.sneath.e.4a)
+    #result2[which(!is.finite(result2))] <- 0
+    #write.csv(result2, "sokal-sneath-4a.csv")
+    #rm(result2)
     
     ################################################################################
-    result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, 
-                                m.n, funs[94], sokal.sneath.e.4b)
-    result2[which(!is.finite(result2))] <- 0
-    write.csv(result2, "sokal-sneath-4b.csv")
-    rm(result2)
+    #result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, 
+    #                            m.n, funs[94], sokal.sneath.e.4b)
+    #result2[which(!is.finite(result2))] <- 0
+    #write.csv(result2, "sokal-sneath-4b.csv")
+    #rm(result2)
     
     ################################################################################
-    result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, 
-                                m.n, funs[95], sokal.sneath.e.5a)
-    result2[which(!is.finite(result2))] <- 0
-    write.csv(result2, "sokal-sneath-5a.csv")
-    rm(result2)
+    #result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, 
+    #                            m.n, funs[95], sokal.sneath.e.5a)
+    #result2[which(!is.finite(result2))] <- 0
+    #write.csv(result2, "sokal-sneath-5a.csv")
+    #rm(result2)
     
     ################################################################################
-    result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, 
-                                m.n, funs[96], sokal.sneath.e.5b)
-    result2[which(!is.finite(result2))] <- 0
-    write.csv(result2, "sokal-sneath-5b.csv")
-    rm(result2)
+    #result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, 
+    #                            m.n, funs[96], sokal.sneath.e.5b)
+    #result2[which(!is.finite(result2))] <- 0
+    #write.csv(result2, "sokal-sneath-5b.csv")
+    #rm(result2)
     
     ################################################################################
     #result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, 
@@ -920,11 +896,11 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     #rm(result2)
     
     ################################################################################
-    result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, 
-                                m.n, funs[103], three.w.jaccard.e)
-    result2[which(!is.finite(result2))] <- 0
-    write.csv(result2, "three-w-jaccard.csv")
-    rm(result2)
+    #result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, 
+    #                            m.n, funs[103], three.w.jaccard.e)
+    #result2[which(!is.finite(result2))] <- 0
+    #write.csv(result2, "three-w-jaccard.csv")
+    #rm(result2)
     
     ################################################################################
     #result2 = compute.measure.2(labels, num.labels, m.a, m.b, m.c, m.d, 
@@ -953,13 +929,6 @@ executeMLSM_CV <- function(ds, number_dataset, number_cores, number_folds, Folde
     #result2[which(!is.finite(result2))] <- 0
     #write.csv(result2, "yule-3.csv")
     #rm(result2)
-    
-    ##################################################################################################
-    # copy file                                                                                      #
-    ##################################################################################################
-    cat("\nCopy files \n")
-    str4 = paste("cp -r ", FolderSplit, "/ ",  folder$FolderRD, sep="")
-    print(system(str4))
     
     gc()
     

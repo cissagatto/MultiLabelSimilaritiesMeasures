@@ -1,5 +1,5 @@
 ##################################################################################################
-# MultiLabel Similarities Measures
+
 # Copyright (C) 2021                                                                             #
 #                                                                                                #
 # This code is free software: you can redistribute it and/or modify it under the terms of the    #
@@ -17,14 +17,60 @@
 #                                                                                                #
 ##################################################################################################
 
+##################################################################################################
+# Configures the workspace according to the operating system                                     #
+##################################################################################################
 FolderRoot = "~/MultiLabelSimilaritiesMeasures"
 FolderScripts = paste(FolderRoot, "/R/", sep="")
 
-library("dplyr")
-library("progress")
-library("stringr")
-library("doParallel") 
+library(stringr)
 
-################################################################################
-# any errors, please, contact me: elainececiliagatto@gmail.com                 #
-################################################################################
+setwd(FolderRoot)
+datasets = data.frame(read.csv("datasets-2022.csv"))
+n = nrow(datasets)
+
+FolderJob = paste(FolderRoot, "/Jobs-Euler-1", sep="")
+if(dir.exists(FolderJob)==FALSE){dir.create(FolderJob)}
+
+i = 1
+while(i<=n){
+
+    dataset = datasets[i,]
+    cat("\n\tDataset:", dataset$Name)
+
+    nome = paste(FolderJob, "/s1-", dataset$Name, ".sh", sep="")
+    output.file <- file(nome, "wb")
+
+    write("#!/bin/bash", file = output.file)
+
+    write("#PBS -l select=1:ncpus=10", file = output.file, append = TRUE)
+
+    write("#PBS -l walltime=128:00:00", file = output.file, append = TRUE)
+
+    write("#PBS -m abe", file = output.file, append = TRUE)
+    
+    write("#PBS -oe", file = output.file, append = TRUE)
+
+    write("#PBS -M elainegatto@estudante.ufscar.br", file = output.file,
+          append = TRUE)
+
+    write(" ", file = output.file, append = TRUE)
+
+    write("eval \"$(conda shell.bash hook)\" ", file = output.file,
+          append = TRUE)
+
+    write("conda activate AmbienteTeste", file = output.file, append = TRUE)
+
+    str7 = paste("Rscript /mnt/nfs/home/elaine/MultiLabelSimilaritiesMeasures/R/mlsm.R ",
+                 dataset$Id, " 10 10 ", "\"/lustre/elaine/s1-",
+                 dataset$Name, "\"", sep="")
+
+    write(str7, file = output.file, append = TRUE)
+    
+    write("conda deactivate", file = output.file, append = TRUE)
+   
+    close(output.file)
+
+    i = i + 1
+    gc()
+  }

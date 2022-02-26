@@ -17,21 +17,8 @@
 #                                                                                                #
 ##################################################################################################
 
-
-##################################################################################################
-# Configures the workspace according to the operating system                                     #
-##################################################################################################
-sistema = c(Sys.info())
-FolderRoot = ""
-if (sistema[1] == "Linux") {
-  FolderRoot = paste("/home/", sistema[7], "/MultiLabelSimilaritiesMeasures", sep = "")
-  setwd(FolderRoot)
-} else {
-  FolderRoot = paste("C:/Users/", sistema[7], "/MultiLabelSimilaritiesMeasures", sep = "")
-  setwd(FolderRoot)
-}
-setwd(FolderRoot)
-FolderScripts =  paste(FolderRoot, "/R", sep = "")
+FolderRoot = "~/MultiLabelSimilaritiesMeasures"
+FolderScripts = paste(FolderRoot, "/R/", sep="")
 
 ##################################################################################################
 
@@ -43,16 +30,10 @@ diretorios <- function(dataset_name, FolderResults){
   FolderScripts =  paste(FolderRoot, "/R", sep="")
   if(dir.exists(FolderScripts)==FALSE){dir.create(FolderScripts)}
   
-  FolderDocs =  paste(FolderRoot, "/Docs", sep="")
-  #if(dir.exists(FolderDocs)==FALSE){dir.create(FolderDocs)}
-  
-  FolderReports =  paste(FolderRoot, "/Reports", sep="")
-  if(dir.exists(FolderReports)==FALSE){dir.create(FolderReports)}
-  
-  FolderRD =  paste(FolderReports, "/", dataset_name, sep="")
+  FolderRD =  paste(FolderResults, "/", dataset_name, sep="")
   if(dir.exists(FolderRD)==FALSE){dir.create(FolderRD)}
   
-  FolderDatasets = paste(FolderRoot, "/Datasets", sep="")
+  FolderDatasets = paste(FolderResults, "/Datasets", sep="")
   if(dir.exists(FolderDatasets)==FALSE){dir.create(FolderDatasets)}
   
   FolderDS = paste(FolderDatasets, "/", dataset_name, sep="")
@@ -76,14 +57,10 @@ diretorios <- function(dataset_name, FolderResults){
   FolderVL = paste(FolderCV, "/Vl", sep="")
   if(dir.exists(FolderVL)==FALSE){dir.create(FolderVL)}
 
-  FolderPlots = paste(FolderRoot, "/Plots", sep="")
-  #if(dir.exists(FolderPlots)==FALSE){dir.create(FolderPlots)}
   
   retorno$FolderDS = FolderDS
   retorno$FolderResults = FolderResults
   retorno$FolderScripts = FolderScripts
-  retorno$FolderDocs = FolderDocs
-  retorno$FolderReports = FolderReports
   retorno$FolderRD = FolderRD
   retorno$FolderDatasets = FolderDatasets
   retorno$FolderCV = FolderCV
@@ -92,7 +69,6 @@ diretorios <- function(dataset_name, FolderResults){
   retorno$FolderTR = FolderTR
   retorno$FolderTS = FolderTS
   retorno$FolderVL = FolderVL
-  retorno$FolderPlots = FolderPlots
   
   return(retorno)
   gc()
