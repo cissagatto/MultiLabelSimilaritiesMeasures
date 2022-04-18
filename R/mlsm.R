@@ -84,6 +84,15 @@ cat("\n# ====> MLSM: GET THE DATASET NAME: ", dataset_name, "              #")
 cat("\n#####################################################################\n\n")
 
 
+#ds <- datasets[22,]
+#number_dataset = 22
+#number_cores = 10
+#number_folds = 10
+#FolderResults = "/dev/shm/res"
+#dataset_name = ds$Name
+
+
+
 cat("\n\n###################################################################")
 cat("\n# ====> MLSM: CREATING FOLDER RESULTS TEMP                          #")
 cat("\n#####################################################################\n\n")
@@ -117,49 +126,62 @@ folder = diretorios(dataset_name, FolderResults)
 
 
 
-cat("\n\n###################################################################")
-cat("\n# ====> MLSM: COPY DATA SETS FROM GOOGLE DRIVE                      #")
-cat("\n#####################################################################\n\n")
-destino = folder$FolderDS
-origem = paste("cloud:Datasets/CrossValidation_WithValidation/", dataset_name, sep="")
-comando = paste("rclone -P copy ", origem, " ", destino, sep="")
-cat("\n\n\n", comando, "\n\n\n") 
-a = print(system(comando))
-a = as.numeric(a)
-if(a != 0) {
-  stop("Erro RCLONE")
-  quit("yes")
-}
+#cat("\n\n###################################################################")
+#cat("\n# ====> MLSM: COPY DATA SETS FROM GOOGLE DRIVE                      #")
+#cat("\n#####################################################################\n\n")
+#destino = folder$FolderDS
+#origem = paste("cloud:Datasets/CrossValidation_WithValidation/", dataset_name, sep="")
+#comando = paste("rclone -P copy ", origem, " ", destino, sep="")
+#cat("\n\n\n", comando, "\n\n\n") 
+#a = print(system(comando))
+#a = as.numeric(a)
+#if(a != 0) {
+#  stop("Erro RCLONE")
+#  quit("yes")
+#}
 
  
-cat("\n\n###################################################################")
-cat("\n# ====> MLSM: COPY DATA SETS FROM GOOGLE DRIVE                      #")
-cat("\n#####################################################################\n\n")
-destino = folder$FolderDS
-origem = paste("cloud:Datasets/Originais/", dataset_name, ".arff", sep="")
-comando = paste("rclone -P copy ", origem, " ", destino, sep="")
-cat("\n\n\n", comando, "\n\n\n") 
-a = print(system(comando))
-a = as.numeric(a)
-if(a != 0) {
- stop("Erro RCLONE")
- quit("yes")
-}
- 
+#cat("\n\n###################################################################")
+#cat("\n# ====> MLSM: COPY DATA SETS FROM GOOGLE DRIVE                      #")
+#cat("\n#####################################################################\n\n")
+#destino = folder$FolderDS
+#origem = paste("cloud:Datasets/Originais/", dataset_name, ".arff", sep="")
+#comando = paste("rclone -P copy ", origem, " ", destino, sep="")
+#cat("\n\n\n", comando, "\n\n\n") 
+#a = print(system(comando))
+#a = as.numeric(a)
+#if(a != 0) {
+# stop("Erro RCLONE")
+# quit("yes")
+#}
+
+
 
 cat("\n\n###################################################################")
-cat("\n# ====> MLSM: COPY DATA SETS FROM GOOGLE DRIVE                      #")
+cat("\n# ====> TCP-KNN-H: ORGANIZANDO AS COISAS                            #")
 cat("\n#####################################################################\n\n")
-destino = folder$FolderDS
-origem = paste("cloud:Datasets/Originais/", dataset_name, ".xml", sep="")
-comando = paste("rclone -P copy ", origem, " ", destino, sep="")
-cat("\n\n\n", comando, "\n\n\n") 
-a = print(system(comando))
-a = as.numeric(a)
-if(a != 0) {
- stop("Erro RCLONE")
- quit("yes")
-}
+
+cat("\nCOPIANDO DATASETS")
+str26 = paste("cp ~/MultiLabelSimilaritiesMeasures/Datasets/", ds$Name, ".tar.gz ",
+              folder$FolderDatasets, sep="")
+res=system(str26)
+if(res!=0){break}else{cat("\ncopiou")}
+
+
+cat("\nDESCOMPACTANDO DATASETS")
+str27 = paste("tar xzf ", folder$FolderResults,
+              "/Datasets/", ds$Name, ".tar.gz -C ",
+              folder$FolderResults, "/Datasets", sep="")
+res=system(str27)
+if(res!=0){break}else{cat("\ndescompactou")}
+
+
+cat("\n APAGANDO TAR")
+str28 = paste("rm ", folder$FolderResults, "/Datasets/",
+              ds$Name, ".tar.gz", sep="")
+res=system(str28)
+if(res!=0){break}else{cat("\napagou")}
+
 
 
 cat("\n\n###################################################################")
@@ -196,19 +218,30 @@ print(system(paste("rm -r ", folder$FolderDS, sep="")))
 print(system(paste("rm -r ", folder$FolderDatasets, sep="")))
 
  
+#cat("\n\n###################################################################")
+#cat("\n# ====> MLSM: COPY TO GOOGLE DRIVE                                  #")
+#cat("\n#####################################################################\n\n")
+#origem = folder$FolderRD
+#destino = paste("cloud:[2022]ResultadosExperimentos/Similaridades/", dataset_name, sep="")
+#comando = paste("rclone -P copy ", origem, " ", destino, sep="")
+#cat("\n\n\n", comando, "\n\n\n") 
+#a = print(system(comando))
+#a = as.numeric(a)
+#if(a != 0) {
+#  stop("Erro RCLONE")
+#  quit("yes")
+#}
+
+
 cat("\n\n###################################################################")
-cat("\n# ====> MLSM: COPY TO GOOGLE DRIVE                                  #")
+cat("\n# ====> TCP-TR-NH: COPY TO HOME                                     #")
 cat("\n#####################################################################\n\n")
-origem = folder$FolderRD
-destino = paste("cloud:[2022]ResultadosExperimentos/Similaridades/", dataset_name, sep="")
-comando = paste("rclone -P copy ", origem, " ", destino, sep="")
-cat("\n\n\n", comando, "\n\n\n") 
-a = print(system(comando))
-a = as.numeric(a)
-if(a != 0) {
-  stop("Erro RCLONE")
-  quit("yes")
-}
+
+str0 = "~/MultiLabelSimilaritiesMeasures/Reports"
+if(dir.exists(str0)==FALSE){dir.create(str0)}
+
+str2 = paste("cp -r ", folder$FolderResults, "/", ds$Name, "/ ", str0, sep="")
+print(system(str2))
 
 
 cat("\n\n###################################################################")
