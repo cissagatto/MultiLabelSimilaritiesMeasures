@@ -7,6 +7,15 @@ Click [here](https://cometa.ujaen.es/datasets/) to go to the cometa page
 ## 10-Fold Cross Validation Multi-Label Datasets
 Click [here](https://www.4shared.com/s/dYpGZWzjQ) to download
 
+## Conda Environment
+[download txt](https://www.4shared.com/s/fUCVTl13zea)
+
+[download yml](https://www.4shared.com/s/f8nOZyxj9iq)
+
+[download yaml](https://www.4shared.com/s/fk5Io4faLiq)
+
+To use conda environment to run this experiment, please consult [here](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) 
+
 ## Tutorial
 
 https://rpubs.com/cissagatto/MultiLabelSimilaritiesMeasures
