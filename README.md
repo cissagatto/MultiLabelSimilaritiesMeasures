@@ -67,6 +67,9 @@ This will execute the code for the dataset number 17 in the _dataset.csv_, with 
 ## IMPORTANT
 I used ABS function in all functions that used SQRT. Divisions per zero were treated like zero.
 
+## Video Demonstration
+Click here to watch a video that demonstrate how to run this code
+
 ## Acknowledgment
 This study is financed in part by the Coordenação de Aperfeiçoamento de Pessoal de Nível Superior - Brasil (CAPES) - Finance Code 001
 
