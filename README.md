@@ -5,7 +5,7 @@ Compute similarities measures (categorical data) for all labels in label space f
 Click [here](https://cometa.ujaen.es/datasets/) to go to the cometa page
 
 ## 10-Fold Cross Validation Multi-Label Datasets
-Click [here](https://www.4shared.com/s/dYpGZWzjQ) to go to the 4shared page
+Click [here](https://www.4shared.com/s/dYpGZWzjQ) to download
 
 ## Tutorial
 
