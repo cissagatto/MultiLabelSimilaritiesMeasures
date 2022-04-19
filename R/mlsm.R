@@ -211,6 +211,7 @@ if(number_folds==1){
   
 }
 
+
 cat("\n\n###################################################################")
 cat("\n# ====> MLSM: DELETE DATASETS FOLDER                                #")
 cat("\n#####################################################################\n\n")
@@ -234,14 +235,31 @@ print(system(paste("rm -r ", folder$FolderDatasets, sep="")))
 
 
 cat("\n\n###################################################################")
-cat("\n# ====> TCP-TR-NH: COPY TO HOME                                     #")
+cat("\n# ====> MLSM: COMPRESS RESULTS                                    #")
+cat("\n#####################################################################\n\n")
+cat("\nCompress results \n")
+str3 = paste("tar -zcvf ", folder$FolderResults, "/", 
+             dataset_name, "-results-mlsm.tar.gz ",
+             folder$FolderResults, sep="")
+print(system(str3))
+
+
+
+cat("\n\n###################################################################")
+cat("\n# ====> MLSM: COPY TO HOME                                     #")
 cat("\n#####################################################################\n\n")
 
-str0 = "~/MultiLabelSimilaritiesMeasures/Reports"
+str0 = "~/MultiLabelSimilaritiesMeasures/Reports/"
 if(dir.exists(str0)==FALSE){dir.create(str0)}
 
-str2 = paste("cp -r ", folder$FolderResults, "/", ds$Name, "/ ", str0, sep="")
-print(system(str2))
+str1 = paste(str0, ds$Name, sep="")
+if(dir.exists(str1)==FALSE){dir.create(str1)}
+
+str3 = paste(folder$FolderResults, "/", dataset_name,
+             "-results-mlsm.tar.gz ", sep="")
+
+str4 = paste("cp -r ", str3, " ", str1, sep="")
+print(system(str4))
 
 
 cat("\n\n###################################################################")
