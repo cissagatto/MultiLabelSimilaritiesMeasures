@@ -36,7 +36,7 @@ This code has the following script in the R folder
 8. mlsm.R
 
 ## FLOWCHART
-<img src="https://github.com/cissagatto/MultiLabelSimilaritiesMeasures/blob/main/comunity-paper-Page-1.png" width="300">
+
 
 ## Preparing your experiment
 
